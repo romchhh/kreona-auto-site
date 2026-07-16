@@ -74,7 +74,7 @@ export default function Footer() {
         <div className={styles.bottom}>
           <span>{dict.footer.copyright} {new Date().getFullYear()}</span>
           <div className={styles.bottomRight}>
-            <a href={localePath(locale, '/polityka-konfidentsiynosti')}>{dict.footer.policy}</a>
+            <a href={localePath(locale, '/polityka')}>{dict.footer.policy}</a>
             <a
               href="https://telebots.site/en"
               target="_blank"

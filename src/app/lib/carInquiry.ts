@@ -10,7 +10,7 @@ export type CarInquiry = {
 export function buildCarInquiry(car: (typeof CARS_IN_STOCK)[number]): CarInquiry {
   return {
     id: car.id,
-    label: `${car.make} ${car.model} — ${car.year}`,
+    label: `${car.make} ${car.model} - ${car.year}`,
     price: car.price,
     details: [
       `${car.make} ${car.model}, ${car.year}`,

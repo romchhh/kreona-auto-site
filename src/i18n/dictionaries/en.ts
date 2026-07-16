@@ -17,12 +17,12 @@ export const en: Dictionary = {
   },
   hero: {
     bannerAria: 'Main banner',
-    altDesktop: 'Cars from the USA, Europe, Canada and Korea turnkey — KREONA',
-    altMobile: 'Car delivery from the USA, Europe, Canada and Korea — KREONA',
+    altDesktop: 'Cars from the USA, Europe, Canada and Korea turnkey - KREONA',
+    altMobile: 'Car delivery from the USA, Europe, Canada and Korea - KREONA',
     headlineBefore: 'Cars from the USA, Europe, Canada and Korea ',
     headlineEm: 'turnkey',
     subheadline:
-      'We select, buy, deliver and support the entire car purchase process — from choice to handover.',
+      'We select, buy, deliver and support the entire car purchase process - from choice to handover.',
     whatsappAria: 'Message on WhatsApp',
     ctaTitle: 'Leave a selection request',
     ctaSub: 'Get a cost estimate for a car with delivery and customs clearance',
@@ -64,8 +64,8 @@ export const en: Dictionary = {
     titleBefore: 'Have ',
     titleEm: 'questions?',
     lead: 'Leave a request or contact us in any convenient way.',
-    note: 'Leave a request today — and we will free of charge select the best car options for your budget.',
-    imageAlt: 'KREONA — car selection and delivery turnkey',
+    note: 'Leave a request today - and we will free of charge select the best car options for your budget.',
+    imageAlt: 'KREONA - car selection and delivery turnkey',
   },
   directions: {
     titleBefore: 'Our ',
@@ -77,7 +77,7 @@ export const en: Dictionary = {
     route: 'Delivery to Poland and Ukraine',
   },
   inventory: {
-    metaTitle: 'Cars in stock — KREONA',
+    metaTitle: 'Cars in stock - KREONA',
     metaDescription:
       'Cars in stock and in transit: delivered turnkey from the USA, Canada, Europe and Korea.',
     keywords: [
@@ -112,7 +112,14 @@ export const en: Dictionary = {
     titleEm: 'to order',
     lead: 'If the car you need is not in stock, we will find it on trusted marketplaces in the USA, Canada, Europe or Korea according to your budget and preferences.',
     cta: 'Find a car',
-    imageAlt: 'USA car to order — KREONA',
+    imageAlt: 'USA car to order - KREONA',
+  },
+  orderTransport: {
+    titleBefore: 'Transport ',
+    titleEm: 'to order',
+    lead: 'If the transport you need is not in stock, we will find it on trusted marketplaces in the USA, Canada, Europe or Korea according to your budget and preferences.',
+    cta: 'Select transport',
+    imageAlt: 'Transport to order - KREONA',
   },
   services: {
     titleBefore: 'Our ',
@@ -163,7 +170,7 @@ export const en: Dictionary = {
     steps: [
       {
         title: 'Request',
-        description: 'You leave a request — and we contact you to get started.',
+        description: 'You leave a request - and we contact you to get started.',
       },
       {
         title: 'Consultation',
@@ -187,7 +194,7 @@ export const en: Dictionary = {
       },
       {
         title: 'Repair',
-        description: 'We provide repair services — if needed.',
+        description: 'We provide repair services - if needed.',
       },
       {
         title: 'Customs clearance',
@@ -238,7 +245,7 @@ export const en: Dictionary = {
     titleBefore: 'Frequently asked ',
     titleEm: 'questions',
     helpLabel: 'Didn’t find an answer?',
-    helpText: 'Write to us — we will calculate the cost and answer all questions for free.',
+    helpText: 'Write to us - we will calculate the cost and answer all questions for free.',
     helpCta: 'Ask a question',
     items: [
       {
@@ -256,7 +263,7 @@ export const en: Dictionary = {
       },
       {
         question: 'Which countries do you import cars from?',
-        answer: 'We work with the USA, Europe, Canada and Korea — and select options that match your budget and needs.',
+        answer: 'We work with the USA, Europe, Canada and Korea - and select options that match your budget and needs.',
       },
       {
         question: 'What is included in the turnkey price?',
@@ -271,7 +278,7 @@ export const en: Dictionary = {
       {
         question: 'Can I order a specific make and trim?',
         answer:
-          'Yes. On order we can find the model, year, mileage and trim you need — or suggest the closest alternatives.',
+          'Yes. On order we can find the model, year, mileage and trim you need - or suggest the closest alternatives.',
       },
       {
         question: 'Do you help with car registration in Poland or Ukraine?',
@@ -281,7 +288,7 @@ export const en: Dictionary = {
     ],
   },
   contactsPage: {
-    metaTitle: 'KREONA contacts — Wrocław | Phone, WhatsApp, request form',
+    metaTitle: 'KREONA contacts - Wrocław | Phone, WhatsApp, request form',
     metaDescription:
       'Contact KREONA in Wrocław: phones, WhatsApp, email and a request form for car selection from the USA, Europe, Canada and Korea.',
     keywords: [
@@ -292,7 +299,7 @@ export const en: Dictionary = {
     ],
     mapHeading: 'How to find us',
     mapTitle: 'Map',
-    imageAlt: 'KREONA — office in Wrocław',
+    imageAlt: 'KREONA - office in Wrocław',
   },
   privacy: {
     metaTitle: 'KREONA privacy policy',
@@ -337,9 +344,9 @@ export const en: Dictionary = {
     s7Intro: 'For questions about personal data processing, contact us at:',
   },
   seo: {
-    defaultTitle: 'KREONA — Cars from the USA, Europe, Canada and Korea turnkey',
+    defaultTitle: 'KREONA - Cars from the USA, Europe, Canada and Korea turnkey',
     defaultDescription:
-      'KREONA Sp. z o.o. — selection, purchase, delivery and full support for cars from the USA, Europe, Canada and Korea. Wrocław, Poland.',
+      'KREONA Sp. z o.o. - selection, purchase, delivery and full support for cars from the USA, Europe, Canada and Korea. Wrocław, Poland.',
     keywords: [
       'car import from USA',
       'car delivery from Europe',
@@ -353,10 +360,10 @@ export const en: Dictionary = {
       'turnkey cars Wrocław',
       'Carfax check',
     ],
-    ogImageAlt: 'KREONA — cars from the USA, Europe, Canada and Korea turnkey',
+    ogImageAlt: 'KREONA - cars from the USA, Europe, Canada and Korea turnkey',
   },
   selectionPage: {
-    metaTitle: 'Car selection by budget — KREONA',
+    metaTitle: 'Car selection by budget - KREONA',
     metaDescription:
       'We will select a car for any budget from the USA, Canada, Europe or Korea. Passenger cars, SUVs, EVs, motorcycles and more.',
     keywords: [
@@ -484,6 +491,116 @@ export const en: Dictionary = {
     text: 'The link may be outdated or the address was typed incorrectly. Choose another section or go back home.',
     home: 'Back to home',
     contacts: 'Contacts',
+  },
+  waterPage: {
+    metaTitle: 'Watercraft turnkey - KREONA',
+    metaDescription:
+      'We select, buy and deliver yachts, sailing yachts, jet skis and other watercraft.',
+    keywords: ['yacht import', 'sailing yachts', 'jet skis', 'watercraft selection', 'KREONA'],
+    titleBefore: 'Water ',
+    titleEm: 'transport',
+    lead: 'We select, buy and deliver watercraft to match your budget and preferences.',
+    aboutTitleBefore: 'Turnkey ',
+    aboutTitleEm: 'from request to delivery',
+    about:
+      'We work with trusted marketplaces and sellers: help choose a vessel, check its condition, handle the purchase and arrange turnkey delivery.',
+    typesTitleBefore: 'What we ',
+    typesTitleEm: 'select',
+    processTitleBefore: 'How we ',
+    processTitleEm: 'work',
+    process: {
+      brief: {
+        title: 'Brief and budget',
+        text: 'We clarify vessel type, budget, region and preferred equipment.',
+      },
+      search: {
+        title: 'Search for options',
+        text: 'We shortlist offers on trusted marketplaces and send you a selection.',
+      },
+      check: {
+        title: 'Inspection',
+        text: 'We help assess condition, history and documents before the deal.',
+      },
+      delivery: {
+        title: 'Deal and delivery',
+        text: 'We support the purchase, logistics and handover to the client.',
+      },
+    },
+    benefitsTitleBefore: 'Why ',
+    benefitsTitleEm: 'with us',
+    benefits: {
+      markets: {
+        title: 'International search',
+        text: 'We search options in the USA, Europe, Canada and Korea for your request.',
+      },
+      care: {
+        title: 'Careful support',
+        text: 'We keep the process transparent - from first consult to delivery.',
+      },
+      turnkey: {
+        title: 'Turnkey service',
+        text: 'We handle selection, checks, the deal and delivery organization.',
+      },
+    },
+    midCtaTitle: 'Need watercraft?',
+    midCtaText: 'Leave a request - we will select options for your budget and preferences.',
+    imageAlt: 'Sailing yacht at sea - selection and delivery by KREONA',
+    cta: 'Leave a request',
+  },
+  oversizedPage: {
+    metaTitle: 'Oversized vehicles turnkey - KREONA',
+    metaDescription:
+      'We select and support import of special equipment, construction and agricultural machinery.',
+    keywords: ['special equipment', 'construction machinery', 'agricultural machinery', 'oversized transport', 'KREONA'],
+    titleBefore: 'Oversized ',
+    titleEm: 'vehicles',
+    lead: 'We select and support import of oversized equipment from trusted marketplaces.',
+    aboutTitleBefore: 'Turnkey ',
+    aboutTitleEm: 'from search to delivery',
+    about:
+      'We find equipment for your tasks and budget, and support inspection, the deal and logistics - from search to delivery on site.',
+    typesTitleBefore: 'What we ',
+    typesTitleEm: 'select',
+    processTitleBefore: 'How we ',
+    processTitleEm: 'work',
+    process: {
+      brief: {
+        title: 'Tasks and budget',
+        text: 'We align equipment type, purpose, budget and timing.',
+      },
+      search: {
+        title: 'Option selection',
+        text: 'We search trusted marketplaces and compare conditions.',
+      },
+      check: {
+        title: 'Inspection',
+        text: 'We help assess condition, hours and risks before purchase.',
+      },
+      delivery: {
+        title: 'Logistics',
+        text: 'We support the deal and deliver equipment to site.',
+      },
+    },
+    benefitsTitleBefore: 'Why ',
+    benefitsTitleEm: 'with us',
+    benefits: {
+      markets: {
+        title: 'Wide choice',
+        text: 'We select special, construction and agricultural equipment for your request.',
+      },
+      care: {
+        title: 'Process control',
+        text: 'We keep you updated at every step - from search to delivery.',
+      },
+      turnkey: {
+        title: 'Full support',
+        text: 'We handle selection, checks, the deal and logistics turnkey.',
+      },
+    },
+    midCtaTitle: 'Need heavy equipment?',
+    midCtaText: 'Leave a request - we will find options for your tasks and budget.',
+    imageAlt: 'Heavy machinery on site - selection and delivery by KREONA',
+    cta: 'Leave a request',
   },
   common: {
     close: 'Close',

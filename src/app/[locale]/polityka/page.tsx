@@ -17,7 +17,7 @@ export async function generateMetadata({
   const dict = await getDictionary(locale)
   return buildPageMetadata({
     locale,
-    path: '/polityka-konfidentsiynosti',
+    path: '/polityka',
     title: dict.privacy.metaTitle,
     description: dict.privacy.metaDescription,
     keywords: dict.privacy.keywords,

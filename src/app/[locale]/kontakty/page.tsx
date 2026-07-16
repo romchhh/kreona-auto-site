@@ -80,7 +80,7 @@ export default async function ContactsPage({ params }: { params: { locale: strin
               </div>
               <div className={styles.mapWrap}>
                 <iframe
-                  title={`${dict.contactsPage.mapTitle} — ${BRAND.name}, ${BRAND.city}`}
+                  title={`${dict.contactsPage.mapTitle} - ${BRAND.name}, ${BRAND.city}`}
                   src={BRAND.mapEmbedUrl}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"

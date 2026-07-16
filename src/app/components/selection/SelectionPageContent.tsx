@@ -1,5 +1,6 @@
 'use client'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { useEffect, useId, useState } from 'react'
 import {
   SELECTION_BENEFIT_IDS,
@@ -10,7 +11,8 @@ import {
 import { getBrandLogo } from '../../data/brandLogos'
 import { BRAND } from '../../brand'
 import { phoneTel } from '../../seo'
-import { useDictionary } from '../../../i18n/LocaleProvider'
+import { useDictionary, useLocale } from '../../../i18n/LocaleProvider'
+import { localePath } from '../../../i18n/paths'
 import { useContactModal } from '../ContactModalContext'
 import { SectionHeading } from '../sections/SectionHeading'
 import SelectionForm, { type SelectionPrefill } from './SelectionForm'
@@ -184,6 +186,8 @@ function StepIcon({ type }: { type: SelectionIcon }) {
 
 export default function SelectionPageContent() {
   const dict = useDictionary()
+  const locale = useLocale()
+  const router = useRouter()
   const page = dict.selectionPage
   const { openForm: openContactForm } = useContactModal()
   const panelTitleId = useId()
@@ -216,8 +220,12 @@ export default function SelectionPageContent() {
   const openCategory = (id: SelectionCategoryId) => {
     const category = SELECTION_CATEGORIES.find((item) => item.id === id)
     if (!category) return
+    if ('href' in category && category.href) {
+      router.push(localePath(locale, category.href))
+      return
+    }
     setActiveId(id)
-    setPanelMode(category.mode === 'types' ? 'types' : 'brands')
+    setPanelMode('brands')
     setPrefill(null)
   }
 

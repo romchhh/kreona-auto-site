@@ -15,8 +15,8 @@ export const BRAND = {
     'https://maps.google.com/maps?q=ul.+Ludwika+Rydygiera+16%2F1,+50-249+Wroc%C5%82aw,+Polska&hl=uk&z=16&output=embed',
   mapLink:
     'https://www.google.com/maps/search/?api=1&query=ul.+Ludwika+Rydygiera+16%2F1,+50-249+Wroc%C5%82aw,+Polska',
-  hoursWeekdays: 'Пн–Сб: 09:00 – 18:00',
-  hoursSunday: 'Неділя — вихідний',
+  hoursWeekdays: 'Пн-Сб: 09:00 - 18:00',
+  hoursSunday: 'Неділя - вихідний',
   heroDesktop: '/hero.png',
   heroMobile: '/hero.png',
   contactImage: '/hero.png',

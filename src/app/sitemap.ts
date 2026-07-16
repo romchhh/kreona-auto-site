@@ -8,9 +8,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     { path: '', changeFrequency: 'weekly' as const, priority: 1 },
     { path: '/kontakty', changeFrequency: 'monthly' as const, priority: 0.8 },
-    { path: '/avto-v-nayavnosti', changeFrequency: 'weekly' as const, priority: 0.85 },
-    { path: '/poslugy/pidbir-avtomobilya', changeFrequency: 'monthly' as const, priority: 0.75 },
-    { path: '/polityka-konfidentsiynosti', changeFrequency: 'yearly' as const, priority: 0.3 },
+    { path: '/avto', changeFrequency: 'weekly' as const, priority: 0.85 },
+    { path: '/poslugy/pidbir', changeFrequency: 'monthly' as const, priority: 0.75 },
+    { path: '/poslugy/vodnyy', changeFrequency: 'monthly' as const, priority: 0.7 },
+    { path: '/poslugy/gabaryt', changeFrequency: 'monthly' as const, priority: 0.7 },
+    { path: '/polityka', changeFrequency: 'yearly' as const, priority: 0.3 },
   ]
 
   return locales.flatMap((locale) =>

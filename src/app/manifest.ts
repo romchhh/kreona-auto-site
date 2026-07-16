@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: SITE_NAME,
     short_name: 'Kreona',
     description:
-      'Автомобілі з США, Європи, Канади та Кореї під ключ — підбір, купівля та доставка.',
+      'Автомобілі з США, Європи, Канади та Кореї під ключ - підбір, купівля та доставка.',
     start_url: '/',
     display: 'standalone',
     background_color: '#FFFFFF',

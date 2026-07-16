@@ -5,9 +5,14 @@ import { useContactModal } from '../ContactModalContext'
 import { SectionHeading } from './SectionHeading'
 import styles from './sections.module.css'
 
-export default function OrderCarsSection() {
+type Props = {
+  variant?: 'cars' | 'transport'
+}
+
+export default function OrderCarsSection({ variant = 'cars' }: Props) {
   const dict = useDictionary()
   const { openForm } = useContactModal()
+  const copy = variant === 'transport' ? dict.orderTransport : dict.order
 
   return (
     <section id="pid-zamovlennya" className={`${styles.section} ${styles.orderSection}`}>
@@ -15,11 +20,11 @@ export default function OrderCarsSection() {
         <div className={styles.orderCard}>
           <div className={styles.orderCopy}>
             <SectionHeading
-              title={<>{dict.order.titleBefore}<em>{dict.order.titleEm}</em></>}
-              lead={dict.order.lead}
+              title={<>{copy.titleBefore}<em>{copy.titleEm}</em></>}
+              lead={copy.lead}
             />
             <button type="button" className={styles.orderCta} onClick={() => openForm()}>
-              {dict.order.cta}
+              {copy.cta}
               <span className={styles.orderCtaIcon} aria-hidden="true">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M2 12 L12 2 M5 2 H12 V9" />
@@ -31,7 +36,7 @@ export default function OrderCarsSection() {
           <div className={styles.orderVisual}>
             <Image
               src="/order-car.png"
-              alt={dict.order.imageAlt}
+              alt={copy.imageAlt}
               fill
               sizes="(max-width: 768px) 90vw, 48vw"
               className={styles.orderCar}

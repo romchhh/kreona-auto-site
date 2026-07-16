@@ -36,9 +36,9 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
   const locale = useLocale()
 
   const navLinks = [
-    { href: localePath(locale, '/avto-v-nayavnosti'), label: dict.nav.inStock },
+    { href: localePath(locale, '/avto'), label: dict.nav.inStock },
     { href: localePath(locale, '/#pid-zamovlennya'), label: dict.nav.onOrder },
-    { href: localePath(locale, '/poslugy/pidbir-avtomobilya'), label: dict.nav.selection },
+    { href: localePath(locale, '/poslugy/pidbir'), label: dict.nav.selection },
     { href: localePath(locale, '/#poslugy'), label: dict.nav.services },
     { href: localePath(locale, '/#yak-pratsyuyemo'), label: dict.nav.howWeWork },
     { href: localePath(locale, '/kontakty'), label: dict.nav.contacts },

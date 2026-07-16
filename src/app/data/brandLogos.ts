@@ -1,4 +1,4 @@
-/** Local logo files in /public/brands — sourced from vehiclespecs/brand-logos, tipstrade/node-vehicle-logos, simple-icons, Wikimedia. */
+/** Local logo files in /public/brands - sourced from vehiclespecs/brand-logos, tipstrade/node-vehicle-logos, simple-icons, Wikimedia. */
 export const BRAND_LOGOS: Record<string, string> = {
   BMW: '/brands/bmw.svg',
   Audi: '/brands/audi.svg',

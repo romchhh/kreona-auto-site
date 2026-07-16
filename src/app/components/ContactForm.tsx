@@ -151,7 +151,7 @@ export default function ContactForm({ idPrefix = '', onSuccess, className, inqui
         <input type="checkbox" checked={form.consent} onChange={set('consent')} required />
         <span>
           {dict.form.consentBefore}
-          <a href={localePath(locale, '/polityka-konfidentsiynosti')} target="_blank" rel="noopener noreferrer">
+          <a href={localePath(locale, '/polityka')} target="_blank" rel="noopener noreferrer">
             {dict.form.consentLink}
           </a>
         </span>

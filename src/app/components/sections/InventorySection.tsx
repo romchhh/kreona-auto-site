@@ -55,7 +55,7 @@ export default function InventorySection() {
             </h2>
             <p className={styles.inventoryLead}>{dict.inventory.lead}</p>
           </div>
-          <Link href={localePath(locale, '/avto-v-nayavnosti')} className={styles.inventoryAllLink}>
+          <Link href={localePath(locale, '/avto')} className={styles.inventoryAllLink}>
             {dict.inventory.allCars}
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M2 12 L12 2 M5 2 H12 V9" />

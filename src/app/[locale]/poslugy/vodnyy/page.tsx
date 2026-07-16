@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import Navbar from '../../../components/Navbar'
 import Footer from '../../../components/Footer'
-import SelectionPageContent from '../../../components/selection/SelectionPageContent'
+import TypeServicePageContent from '../../../components/typeService/TypeServicePageContent'
 import OrderCarsSection from '../../../components/sections/OrderCarsSection'
-import { BreadcrumbJsonLd, ServiceJsonLd } from '../../../components/JsonLd'
+import { BreadcrumbJsonLd } from '../../../components/JsonLd'
 import { buildPageMetadata } from '../../../lib/pageMetadata'
 import { getDictionary } from '../../../../i18n/getDictionary'
 import { isLocale, type Locale } from '../../../../i18n/config'
@@ -17,15 +17,15 @@ export async function generateMetadata({
   const dict = await getDictionary(locale)
   return buildPageMetadata({
     locale,
-    path: '/poslugy/pidbir-avtomobilya',
-    title: dict.selectionPage.metaTitle,
-    description: dict.selectionPage.metaDescription,
-    keywords: dict.selectionPage.keywords,
-    ogImageAlt: dict.seo.ogImageAlt,
+    path: '/poslugy/vodnyy',
+    title: dict.waterPage.metaTitle,
+    description: dict.waterPage.metaDescription,
+    keywords: dict.waterPage.keywords,
+    ogImageAlt: dict.waterPage.imageAlt,
   })
 }
 
-export default async function SelectionServicePage({
+export default async function WaterTransportPage({
   params,
 }: {
   params: { locale: string }
@@ -35,18 +35,17 @@ export default async function SelectionServicePage({
 
   return (
     <>
-      <ServiceJsonLd locale={locale} dict={dict} />
       <BreadcrumbJsonLd
         locale={locale}
         items={[
           { name: dict.nav.services, path: '/#poslugy' },
-          { name: dict.nav.selection, path: '/poslugy/pidbir-avtomobilya' },
+          { name: dict.selectionPage.categories.water, path: '/poslugy/vodnyy' },
         ]}
       />
       <Navbar transparent />
       <main id="main-content">
-        <SelectionPageContent />
-        <OrderCarsSection />
+        <TypeServicePageContent pageId="water" />
+        <OrderCarsSection variant="transport" />
       </main>
       <Footer />
     </>

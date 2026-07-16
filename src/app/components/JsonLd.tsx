@@ -164,14 +164,14 @@ export function ServiceJsonLd({
   const data = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: page.metaTitle.replace(/ — KREONA$/, ''),
+    name: page.metaTitle.replace(/ - KREONA$/, ''),
     description: page.metaDescription,
     provider: { '@id': `${SITE_URL}/#organization` },
     areaServed: [
       { '@type': 'Country', name: 'Poland' },
       { '@type': 'Country', name: 'Ukraine' },
     ],
-    url: absoluteUrl(`/${locale}/poslugy/pidbir-avtomobilya`),
+    url: absoluteUrl(`/${locale}/poslugy/pidbir`),
     serviceType: 'Vehicle selection and import',
   }
 
@@ -197,9 +197,9 @@ export function InventoryJsonLd({
   const data = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: dict.inventory.metaTitle.replace(/ — KREONA$/, ''),
+    name: dict.inventory.metaTitle.replace(/ - KREONA$/, ''),
     description: dict.inventory.metaDescription,
-    url: absoluteUrl(`/${locale}/avto-v-nayavnosti`),
+    url: absoluteUrl(`/${locale}/avto`),
     numberOfItems: cars.length,
     itemListElement: cars.map((car, index) => ({
       '@type': 'ListItem',

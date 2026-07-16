@@ -17,12 +17,12 @@ export const pl: Dictionary = {
   },
   hero: {
     bannerAria: 'Główny baner',
-    altDesktop: 'Samochody z USA, Europy, Kanady i Korei pod klucz — KREONA',
-    altMobile: 'Dostawa aut z USA, Europy, Kanady i Korei — KREONA',
+    altDesktop: 'Samochody z USA, Europy, Kanady i Korei pod klucz - KREONA',
+    altMobile: 'Dostawa aut z USA, Europy, Kanady i Korei - KREONA',
     headlineBefore: 'Samochody z USA, Europy, Kanady i Korei ',
     headlineEm: 'pod klucz',
     subheadline:
-      'Dobieramy, kupujemy, dostarczamy i towarzyszymy w całym procesie zakupu samochodu — od wyboru do przekazania klientowi.',
+      'Dobieramy, kupujemy, dostarczamy i towarzyszymy w całym procesie zakupu samochodu - od wyboru do przekazania klientowi.',
     whatsappAria: 'Napisz na WhatsApp',
     ctaTitle: 'Zostaw zgłoszenie na dobór',
     ctaSub: 'Otrzymaj wycenę auta z dostawą i odprawą celną',
@@ -64,8 +64,8 @@ export const pl: Dictionary = {
     titleBefore: 'Masz ',
     titleEm: 'pytania?',
     lead: 'Zostaw zgłoszenie lub skontaktuj się z nami w dogodny sposób.',
-    note: 'Zostaw zgłoszenie już dziś — bezpłatnie dobierzemy najlepsze opcje aut pod Twój budżet.',
-    imageAlt: 'KREONA — dobór i dostawa aut pod klucz',
+    note: 'Zostaw zgłoszenie już dziś - bezpłatnie dobierzemy najlepsze opcje aut pod Twój budżet.',
+    imageAlt: 'KREONA - dobór i dostawa aut pod klucz',
   },
   directions: {
     titleBefore: 'Nasze ',
@@ -77,7 +77,7 @@ export const pl: Dictionary = {
     route: 'Dostawa do Polski i Ukrainy',
   },
   inventory: {
-    metaTitle: 'Samochody na stanie — KREONA',
+    metaTitle: 'Samochody na stanie - KREONA',
     metaDescription:
       'Samochody na stanie i w drodze: dostarczone pod klucz z USA, Kanady, Europy i Korei.',
     keywords: [
@@ -112,7 +112,14 @@ export const pl: Dictionary = {
     titleEm: 'na zamówienie',
     lead: 'Jeśli potrzebnego auta nie ma na stanie, znajdziemy je na sprawdzonych platformach w USA, Kanadzie, Europie lub Korei zgodnie z Twoim budżetem i preferencjami.',
     cta: 'Dobierz samochód',
-    imageAlt: 'Samochód z USA na zamówienie — KREONA',
+    imageAlt: 'Samochód z USA na zamówienie - KREONA',
+  },
+  orderTransport: {
+    titleBefore: 'Transport ',
+    titleEm: 'na zamówienie',
+    lead: 'Jeśli potrzebnego transportu nie ma na stanie, znajdziemy go na sprawdzonych platformach w USA, Kanadzie, Europie lub Korei zgodnie z Twoim budżetem i preferencjami.',
+    cta: 'Dobierz transport',
+    imageAlt: 'Transport na zamówienie - KREONA',
   },
   services: {
     titleBefore: 'Nasze ',
@@ -163,7 +170,7 @@ export const pl: Dictionary = {
     steps: [
       {
         title: 'Zgłoszenie',
-        description: 'Zostawiasz zgłoszenie — i kontaktujemy się, aby zacząć.',
+        description: 'Zostawiasz zgłoszenie - i kontaktujemy się, aby zacząć.',
       },
       {
         title: 'Konsultacja',
@@ -187,7 +194,7 @@ export const pl: Dictionary = {
       },
       {
         title: 'Naprawa',
-        description: 'Zapewniamy usługi naprawy — w razie potrzeby.',
+        description: 'Zapewniamy usługi naprawy - w razie potrzeby.',
       },
       {
         title: 'Odprawa celna',
@@ -238,7 +245,7 @@ export const pl: Dictionary = {
     titleBefore: 'Częste ',
     titleEm: 'pytania',
     helpLabel: 'Nie znalazłeś odpowiedzi?',
-    helpText: 'Napisz do nas — bezpłatnie wyliczymy koszt i odpowiemy na wszystkie pytania.',
+    helpText: 'Napisz do nas - bezpłatnie wyliczymy koszt i odpowiemy na wszystkie pytania.',
     helpCta: 'Zadaj pytanie',
     items: [
       {
@@ -256,7 +263,7 @@ export const pl: Dictionary = {
       },
       {
         question: 'Z jakich krajów sprowadzacie auta?',
-        answer: 'Pracujemy z USA, Europą, Kanadą i Koreą — dobieramy opcje pod Twój budżet i potrzeby.',
+        answer: 'Pracujemy z USA, Europą, Kanadą i Koreą - dobieramy opcje pod Twój budżet i potrzeby.',
       },
       {
         question: 'Co wchodzi w cenę „pod klucz”?',
@@ -271,7 +278,7 @@ export const pl: Dictionary = {
       {
         question: 'Czy mogę zamówić konkretną markę i wersję?',
         answer:
-          'Tak. Na zamówienie znajdziemy model, rok, przebieg i wyposażenie, których potrzebujesz — albo zaproponujemy najbliższe odpowiedniki.',
+          'Tak. Na zamówienie znajdziemy model, rok, przebieg i wyposażenie, których potrzebujesz - albo zaproponujemy najbliższe odpowiedniki.',
       },
       {
         question: 'Czy pomagacie w rejestracji auta w Polsce lub Ukrainie?',
@@ -281,7 +288,7 @@ export const pl: Dictionary = {
     ],
   },
   contactsPage: {
-    metaTitle: 'Kontakt KREONA — Wrocław | Telefon, WhatsApp, formularz',
+    metaTitle: 'Kontakt KREONA - Wrocław | Telefon, WhatsApp, formularz',
     metaDescription:
       'Skontaktuj się z KREONA we Wrocławiu: telefony, WhatsApp, e-mail i formularz zgłoszenia na dobór aut z USA, Europy, Kanady i Korei.',
     keywords: [
@@ -292,7 +299,7 @@ export const pl: Dictionary = {
     ],
     mapHeading: 'Jak nas znaleźć',
     mapTitle: 'Mapa',
-    imageAlt: 'KREONA — biuro we Wrocławiu',
+    imageAlt: 'KREONA - biuro we Wrocławiu',
   },
   privacy: {
     metaTitle: 'Polityka prywatności KREONA',
@@ -337,9 +344,9 @@ export const pl: Dictionary = {
     s7Intro: 'W sprawach dotyczących przetwarzania danych osobowych skontaktuj się z nami:',
   },
   seo: {
-    defaultTitle: 'KREONA — Samochody z USA, Europy, Kanady i Korei pod klucz',
+    defaultTitle: 'KREONA - Samochody z USA, Europy, Kanady i Korei pod klucz',
     defaultDescription:
-      'KREONA Sp. z o.o. — dobór, zakup, dostawa i pełna opieka samochodów z USA, Europy, Kanady i Korei. Wrocław, Polska.',
+      'KREONA Sp. z o.o. - dobór, zakup, dostawa i pełna opieka samochodów z USA, Europy, Kanady i Korei. Wrocław, Polska.',
     keywords: [
       'sprowadzanie aut z USA',
       'dostawa aut z Europy',
@@ -353,10 +360,10 @@ export const pl: Dictionary = {
       'auta pod klucz Wrocław',
       'sprawdzenie Carfax',
     ],
-    ogImageAlt: 'KREONA — samochody z USA, Europy, Kanady i Korei pod klucz',
+    ogImageAlt: 'KREONA - samochody z USA, Europy, Kanady i Korei pod klucz',
   },
   selectionPage: {
-    metaTitle: 'Dobór auta pod budżet — KREONA',
+    metaTitle: 'Dobór auta pod budżet - KREONA',
     metaDescription:
       'Dobierzemy samochód pod każdy budżet z USA, Kanady, Europy lub Korei. Osobowe, SUV, elektryki, motocykle i więcej.',
     keywords: [
@@ -484,6 +491,116 @@ export const pl: Dictionary = {
     text: 'Link może być nieaktualny albo adres został wpisany błędnie. Wybierz inną sekcję lub wróć na stronę główną.',
     home: 'Na stronę główną',
     contacts: 'Kontakt',
+  },
+  waterPage: {
+    metaTitle: 'Transport wodny pod klucz - KREONA',
+    metaDescription:
+      'Dobieramy, kupujemy i dostarczamy jachty, jachty żaglowe, skutery wodne i inny transport wodny.',
+    keywords: ['jachty pod klucz', 'jachty żaglowe', 'skutery wodne', 'dobór jachtu', 'KREONA'],
+    titleBefore: 'Transport ',
+    titleEm: 'wodny',
+    lead: 'Dobieramy, kupujemy i dostarczamy transport wodny pod Twój budżet i oczekiwania.',
+    aboutTitleBefore: 'Pod klucz ',
+    aboutTitleEm: 'od zgłoszenia do dostawy',
+    about:
+      'Pracujemy ze sprawdzonymi platformami i sprzedawcami: pomagamy wybrać jednostkę, sprawdzić stan, sfinalizować zakup i zorganizować dostawę pod klucz.',
+    typesTitleBefore: 'Co ',
+    typesTitleEm: 'dobieramy',
+    processTitleBefore: 'Jak ',
+    processTitleEm: 'pracujemy',
+    process: {
+      brief: {
+        title: 'Brief i budżet',
+        text: 'Ustalamy typ jednostki, budżet, region i oczekiwania co do wyposażenia.',
+      },
+      search: {
+        title: 'Szukanie opcji',
+        text: 'Dobieramy oferty ze sprawdzonych platform i wysyłamy zestawienie.',
+      },
+      check: {
+        title: 'Weryfikacja',
+        text: 'Pomagamy ocenić stan, historię i dokumenty przed transakcją.',
+      },
+      delivery: {
+        title: 'Umowa i dostawa',
+        text: 'Wspieramy zakup, logistykę i przekazanie transportu klientowi.',
+      },
+    },
+    benefitsTitleBefore: 'Dlaczego ',
+    benefitsTitleEm: 'z nami',
+    benefits: {
+      markets: {
+        title: 'Międzynarodowe poszukiwania',
+        text: 'Szukamy opcji w USA, Europie, Kanadzie i Korei pod Twoje zapytanie.',
+      },
+      care: {
+        title: 'Uważna opieka',
+        text: 'Prowadzimy proces przejrzyście - od pierwszej konsultacji do dostawy.',
+      },
+      turnkey: {
+        title: 'Pod klucz',
+        text: 'Bierzemy na siebie dobór, weryfikację, transakcję i organizację dostawy.',
+      },
+    },
+    midCtaTitle: 'Potrzebujesz transportu wodnego?',
+    midCtaText: 'Zostaw zgłoszenie - dobierzemy opcje pod budżet i oczekiwania.',
+    imageAlt: 'Jacht żaglowy na morzu - dobór i dostawa z KREONA',
+    cta: 'Zostaw zgłoszenie',
+  },
+  oversizedPage: {
+    metaTitle: 'Transport wielkogabarytowy pod klucz - KREONA',
+    metaDescription:
+      'Dobieramy i wspieramy sprowadzanie sprzętu specjalnego, budowlanego i rolniczego.',
+    keywords: ['sprzęt specjalny', 'maszyny budowlane', 'maszyny rolnicze', 'transport wielkogabarytowy', 'KREONA'],
+    titleBefore: 'Transport ',
+    titleEm: 'wielkogabarytowy',
+    lead: 'Dobieramy i wspieramy sprowadzanie techniki wielkogabarytowej ze sprawdzonych platform.',
+    aboutTitleBefore: 'Pod klucz ',
+    aboutTitleEm: 'od poszukiwania do dostawy',
+    about:
+      'Szukamy sprzętu pod Twoje zadania i budżet, wspieramy weryfikację, transakcję i logistykę - od poszukiwania do dostawy na miejsce.',
+    typesTitleBefore: 'Co ',
+    typesTitleEm: 'dobieramy',
+    processTitleBefore: 'Jak ',
+    processTitleEm: 'pracujemy',
+    process: {
+      brief: {
+        title: 'Zadania i budżet',
+        text: 'Uzgadniamy typ sprzętu, przeznaczenie, budżet i terminy.',
+      },
+      search: {
+        title: 'Dobór opcji',
+        text: 'Szukamy sprzętu na sprawdzonych platformach i porównujemy warunki.',
+      },
+      check: {
+        title: 'Weryfikacja',
+        text: 'Pomagamy ocenić stan, motogodziny i ryzyka przed zakupem.',
+      },
+      delivery: {
+        title: 'Logistyka',
+        text: 'Wspieramy transakcję i dostawę sprzętu na miejsce.',
+      },
+    },
+    benefitsTitleBefore: 'Dlaczego ',
+    benefitsTitleEm: 'z nami',
+    benefits: {
+      markets: {
+        title: 'Szeroki wybór',
+        text: 'Dobieramy sprzęt specjalny, budowlany i rolniczy pod zapytanie.',
+      },
+      care: {
+        title: 'Kontrola procesu',
+        text: 'Informujemy na każdym etapie - od poszukiwania do dostawy.',
+      },
+      turnkey: {
+        title: 'Pełna opieka',
+        text: 'Bierzemy na siebie dobór, weryfikację, transakcję i logistykę pod klucz.',
+      },
+    },
+    midCtaTitle: 'Potrzebujesz sprzętu specjalnego?',
+    midCtaText: 'Zostaw zgłoszenie - znajdziemy opcje pod Twoje zadania i budżet.',
+    imageAlt: 'Technika specjalistyczna na placu - dobór i dostawa z KREONA',
+    cta: 'Zostaw zgłoszenie',
   },
   common: {
     close: 'Zamknij',

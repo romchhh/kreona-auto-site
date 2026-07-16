@@ -92,7 +92,7 @@ export default function ServicesSection() {
                     <div className={styles.serviceBody}>
                       <h3 className={styles.serviceTitle}>{copy.title}</h3>
                       <p className={styles.serviceText}>{copy.description}</p>
-                      <Link href={localePath(locale, '/poslugy/pidbir-avtomobilya')} className={styles.serviceBtn}>
+                      <Link href={localePath(locale, '/poslugy/pidbir')} className={styles.serviceBtn}>
                         {dict.services.details}
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                           <path d="M2 12 L12 2 M5 2 H12 V9" />

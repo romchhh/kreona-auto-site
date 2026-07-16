@@ -6,10 +6,10 @@ export const SITE_URL =
 export const SITE_NAME = BRAND.name
 
 export const DEFAULT_TITLE =
-  'KREONA — Автомобілі з США, Європи, Канади та Кореї під ключ'
+  'KREONA - Автомобілі з США, Європи, Канади та Кореї під ключ'
 
 export const DEFAULT_DESCRIPTION =
-  'KREONA Sp. z o.o. — підбір, купівля, доставка та повний супровід автомобілів з США, Європи, Канади та Кореї. Wrocław, Polska.'
+  'KREONA Sp. z o.o. - підбір, купівля, доставка та повний супровід автомобілів з США, Європи, Канади та Кореї. Wrocław, Polska.'
 
 export const KEYWORDS = [
   'пригін авто з США',
@@ -35,8 +35,8 @@ export function phoneTel(phone: string) {
 }
 
 export const BUSINESS_HOURS = {
-  weekdays: 'Пн–Сб: 09:00 – 18:00',
-  sunday: 'Неділя — вихідний',
+  weekdays: 'Пн-Сб: 09:00 - 18:00',
+  sunday: 'Неділя - вихідний',
   schema: ['Mo-Sa 09:00-18:00'],
 } as const
 

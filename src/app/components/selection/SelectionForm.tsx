@@ -200,7 +200,7 @@ export default function SelectionForm({ prefill, onClose, idPrefix = 'selection'
         <input type="checkbox" checked={form.consent} onChange={set('consent')} required />
         <span>
           {f.consentBefore}
-          <Link href={localePath(locale, '/polityka-konfidentsiynosti')} target="_blank" rel="noopener noreferrer">
+          <Link href={localePath(locale, '/polityka')} target="_blank" rel="noopener noreferrer">
             {f.consentLink}
           </Link>
         </span>

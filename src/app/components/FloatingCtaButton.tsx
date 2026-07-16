@@ -13,8 +13,10 @@ export default function FloatingCtaButton() {
   const [footerVisible, setFooterVisible] = useState(false)
 
   const hiddenOnPage =
-    pathname?.includes('/poslugy/pidbir-avtomobilya') ||
-    pathname?.includes('/avto-v-nayavnosti')
+    pathname?.includes('/poslugy/pidbir') ||
+    pathname?.endsWith('/avto') ||
+    pathname?.includes('/poslugy/vodnyy') ||
+    pathname?.includes('/poslugy/gabaryt')
 
   useEffect(() => {
     if (hiddenOnPage) return

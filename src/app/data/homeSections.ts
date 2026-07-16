@@ -24,7 +24,7 @@ export const DIRECTIONS = [
 export const SERVICES = [
   {
     id: 'pidbir',
-    slug: 'pidbir-avtomobilya',
+    slug: 'pidbir',
     image: '/services/pidbir.png',
     theme: 'dark',
   },

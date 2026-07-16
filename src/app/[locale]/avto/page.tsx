@@ -18,7 +18,7 @@ export async function generateMetadata({
   const dict = await getDictionary(locale)
   return buildPageMetadata({
     locale,
-    path: '/avto-v-nayavnosti',
+    path: '/avto',
     title: dict.inventory.metaTitle,
     description: dict.inventory.metaDescription,
     keywords: dict.inventory.keywords,
@@ -39,7 +39,7 @@ export default async function InventoryPage({
       <InventoryJsonLd locale={locale} dict={dict} cars={CARS_IN_STOCK} />
       <BreadcrumbJsonLd
         locale={locale}
-        items={[{ name: dict.nav.inStock, path: '/avto-v-nayavnosti' }]}
+        items={[{ name: dict.nav.inStock, path: '/avto' }]}
       />
       <Navbar />
       <main id="main-content">

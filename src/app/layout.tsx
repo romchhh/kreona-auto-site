@@ -57,7 +57,7 @@ export const metadata: Metadata = {
         url: OG_IMAGE,
         width: 1408,
         height: 768,
-        alt: `${SITE_NAME} — автомобілі під ключ`,
+        alt: `${SITE_NAME} - автомобілі під ключ`,
       },
     ],
   },

@@ -1,5 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { defaultLocale, isLocale, locales } from './i18n/config'
+import { defaultLocale, isLocale } from './i18n/config'
+
+const PATH_REDIRECTS: Record<string, string> = {
+  '/avto-v-nayavnosti': '/avto',
+  '/poslugy/pidbir-avtomobilya': '/poslugy/pidbir',
+  '/poslugy/vodnyy-transport': '/poslugy/vodnyy',
+  '/poslugy/velykogabarytnyy-transport': '/poslugy/gabaryt',
+  '/polityka-konfidentsiynosti': '/polityka',
+}
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -13,10 +21,24 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  const segment = pathname.split('/')[1]
-  if (isLocale(segment)) {
+  const segments = pathname.split('/')
+  const maybeLocale = segments[1]
+  const hasLocale = isLocale(maybeLocale)
+  const pathWithoutLocale = hasLocale
+    ? `/${segments.slice(2).join('/')}`.replace(/\/$/, '') || '/'
+    : pathname
+
+  const redirected = PATH_REDIRECTS[pathWithoutLocale]
+  if (redirected) {
+    const url = request.nextUrl.clone()
+    const locale = hasLocale ? maybeLocale : defaultLocale
+    url.pathname = `/${locale}${redirected}`
+    return NextResponse.redirect(url, 308)
+  }
+
+  if (hasLocale) {
     const requestHeaders = new Headers(request.headers)
-    requestHeaders.set('x-locale', segment)
+    requestHeaders.set('x-locale', maybeLocale)
     return NextResponse.next({
       request: { headers: requestHeaders },
     })

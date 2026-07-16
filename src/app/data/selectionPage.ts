@@ -129,6 +129,7 @@ export const SELECTION_CATEGORIES = [
     mode: 'types' as const,
     ctaKey: 'ctaRequest' as const,
     typeKeys: ['yacht', 'sailYacht', 'jetSki', 'otherWater'] as const,
+    href: '/poslugy/vodnyy',
   },
   {
     id: 'oversized',
@@ -137,6 +138,7 @@ export const SELECTION_CATEGORIES = [
     mode: 'types' as const,
     ctaKey: 'ctaRequest' as const,
     typeKeys: ['special', 'construction', 'agricultural', 'otherOversized'] as const,
+    href: '/poslugy/gabaryt',
   },
 ] as const
 

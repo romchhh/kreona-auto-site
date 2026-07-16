@@ -46,7 +46,7 @@ export default function InventoryCarCard({ car }: { car: InventoryCar }) {
 
       <div className={styles.inventoryMeta}>
         <h3 className={styles.inventorySlideTitle}>
-          {car.make} {car.model} — {car.year}
+          {car.make} {car.model} - {car.year}
         </h3>
         <p className={styles.inventoryPrice}>{car.price}</p>
 
