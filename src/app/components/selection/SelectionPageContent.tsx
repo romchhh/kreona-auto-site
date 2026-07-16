@@ -185,7 +185,7 @@ function StepIcon({ type }: { type: SelectionIcon }) {
 export default function SelectionPageContent() {
   const dict = useDictionary()
   const page = dict.selectionPage
-  const { open: openContactForm } = useContactModal()
+  const { openForm: openContactForm } = useContactModal()
   const panelTitleId = useId()
   const [activeId, setActiveId] = useState<SelectionCategoryId | null>(null)
   const [panelMode, setPanelMode] = useState<PanelMode>('brands')
