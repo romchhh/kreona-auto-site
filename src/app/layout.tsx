@@ -10,6 +10,8 @@ import {
   DEFAULT_TITLE,
   KEYWORDS,
   OG_IMAGE,
+  OG_IMAGE_HEIGHT,
+  OG_IMAGE_WIDTH,
   SITE_NAME,
   SITE_URL,
   absoluteUrl,
@@ -55,9 +57,10 @@ export const metadata: Metadata = {
     images: [
       {
         url: OG_IMAGE,
-        width: 1408,
-        height: 768,
+        width: OG_IMAGE_WIDTH,
+        height: OG_IMAGE_HEIGHT,
         alt: `${SITE_NAME} - автомобілі під ключ`,
+        type: 'image/jpeg',
       },
     ],
   },
@@ -79,9 +82,18 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/favicon.png',
+    icon: [{ url: '/favicon.png', sizes: '500x500', type: 'image/png' }],
     shortcut: '/favicon.png',
-    apple: '/favicon.png',
+    apple: [{ url: '/favicon.png', sizes: '500x500', type: 'image/png' }],
+  },
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : undefined,
+  other: {
+    'geo.region': 'PL-DS',
+    'geo.placename': 'Wrocław',
+    'geo.position': '51.1254;17.0335',
+    ICBM: '51.1254, 17.0335',
   },
 }
 

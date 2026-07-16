@@ -2,11 +2,12 @@ import type { Dictionary } from './uk'
 
 export const en: Dictionary = {
   nav: {
-    inStock: 'Cars in stock',
-    onOrder: 'To order',
-    selection: 'Vehicle selection',
+    inStock: 'In stock',
+    selection: 'Selection',
+    water: 'Water',
+    oversized: 'Oversized',
     services: 'Services',
-    howWeWork: 'How we work',
+    howWeWork: 'Process',
     whyUs: 'Why us',
     faq: 'FAQs',
     contacts: 'Contacts',
@@ -79,7 +80,7 @@ export const en: Dictionary = {
   inventory: {
     metaTitle: 'Cars in stock - KREONA',
     metaDescription:
-      'Cars in stock and in transit: delivered turnkey from the USA, Canada, Europe and Korea.',
+      'Cars in stock and in transit from the USA, Canada, Europe and Korea. Choose a turnkey car with KREONA in Wrocław or request a custom search.',
     keywords: [
       'cars in stock',
       'USA cars Poland',
@@ -495,17 +496,26 @@ export const en: Dictionary = {
   waterPage: {
     metaTitle: 'Watercraft turnkey - KREONA',
     metaDescription:
-      'We select, buy and deliver yachts, sailing yachts, jet skis and other watercraft.',
+      'We select, buy and deliver yachts, sailing yachts, jet skis and other watercraft turnkey from trusted marketplaces.',
     keywords: ['yacht import', 'sailing yachts', 'jet skis', 'watercraft selection', 'KREONA'],
-    titleBefore: 'Water ',
-    titleEm: 'transport',
-    lead: 'We select, buy and deliver watercraft to match your budget and preferences.',
+    titleBefore: 'Yachts from the USA, Europe and Canada ',
+    titleEm: 'turnkey',
+    lead:
+      'We select yachts, sailing yachts and jet skis for your budget - with inspection, purchase support and delivery.',
+    ctaTitle: 'Request a selection',
+    ctaSub: 'Get options for your budget with delivery estimate',
     aboutTitleBefore: 'Turnkey ',
     aboutTitleEm: 'from request to delivery',
     about:
       'We work with trusted marketplaces and sellers: help choose a vessel, check its condition, handle the purchase and arrange turnkey delivery.',
     typesTitleBefore: 'What we ',
     typesTitleEm: 'select',
+    typeDescriptions: {
+      yacht: 'Motor yachts matched to your budget and use case.',
+      sailYacht: 'Sailing yachts for leisure and longer passages.',
+      jetSki: 'Jet skis for dynamic time on the water.',
+      otherWater: 'Boats and other watercraft for your request.',
+    },
     processTitleBefore: 'How we ',
     processTitleEm: 'work',
     process: {
@@ -544,23 +554,33 @@ export const en: Dictionary = {
     },
     midCtaTitle: 'Need watercraft?',
     midCtaText: 'Leave a request - we will select options for your budget and preferences.',
+    orderCta: 'Order',
     imageAlt: 'Sailing yacht at sea - selection and delivery by KREONA',
     cta: 'Leave a request',
   },
   oversizedPage: {
     metaTitle: 'Oversized vehicles turnkey - KREONA',
     metaDescription:
-      'We select and support import of special equipment, construction and agricultural machinery.',
+      'We select and support import of special equipment, construction and agricultural machinery turnkey - inspection, deal and on-site delivery.',
     keywords: ['special equipment', 'construction machinery', 'agricultural machinery', 'oversized transport', 'KREONA'],
-    titleBefore: 'Oversized ',
-    titleEm: 'vehicles',
-    lead: 'We select and support import of oversized equipment from trusted marketplaces.',
+    titleBefore: 'Special equipment from abroad ',
+    titleEm: 'turnkey',
+    lead:
+      'We select construction, agricultural and special machinery for your tasks - with inspection and on-site delivery.',
+    ctaTitle: 'Request a selection',
+    ctaSub: 'Get options for your needs with logistics estimate',
     aboutTitleBefore: 'Turnkey ',
     aboutTitleEm: 'from search to delivery',
     about:
       'We find equipment for your tasks and budget, and support inspection, the deal and logistics - from search to delivery on site.',
     typesTitleBefore: 'What we ',
     typesTitleEm: 'select',
+    typeDescriptions: {
+      special: 'Loaders, cranes and other special equipment for your tasks.',
+      construction: 'Excavators, bulldozers and machinery for construction.',
+      agricultural: 'Tractors, harvesters and farm equipment for the season.',
+      otherOversized: 'Other oversized transport for your request.',
+    },
     processTitleBefore: 'How we ',
     processTitleEm: 'work',
     process: {
@@ -599,6 +619,7 @@ export const en: Dictionary = {
     },
     midCtaTitle: 'Need heavy equipment?',
     midCtaText: 'Leave a request - we will find options for your tasks and budget.',
+    orderCta: 'Order',
     imageAlt: 'Heavy machinery on site - selection and delivery by KREONA',
     cta: 'Leave a request',
   },

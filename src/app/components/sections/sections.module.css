@@ -932,10 +932,13 @@
   margin-top: 4px;
   min-height: 46px;
   padding: 0 20px;
+  border: none;
   border-radius: 999px;
+  font: inherit;
   font-size: 14px;
   font-weight: 700;
   text-decoration: none;
+  cursor: pointer;
   transition: transform 0.2s, background 0.2s, color 0.2s;
 }
 

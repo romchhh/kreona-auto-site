@@ -35,13 +35,17 @@ export default async function SelectionServicePage({
 
   return (
     <>
-      <ServiceJsonLd locale={locale} dict={dict} />
+      <ServiceJsonLd
+        locale={locale}
+        name={dict.selectionPage.metaTitle.replace(/ - KREONA$/, '')}
+        description={dict.selectionPage.metaDescription}
+        path="/poslugy/pidbir"
+        serviceType="Vehicle selection and import"
+        image="/services/pidbir.png"
+      />
       <BreadcrumbJsonLd
         locale={locale}
-        items={[
-          { name: dict.nav.services, path: '/#poslugy' },
-          { name: dict.nav.selection, path: '/poslugy/pidbir' },
-        ]}
+        items={[{ name: dict.nav.selection, path: '/poslugy/pidbir' }]}
       />
       <Navbar transparent />
       <main id="main-content">

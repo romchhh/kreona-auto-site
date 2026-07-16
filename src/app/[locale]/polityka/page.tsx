@@ -6,6 +6,7 @@ import { getDictionary } from '../../../i18n/getDictionary'
 import { isLocale, type Locale } from '../../../i18n/config'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
+import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import styles from './page.module.css'
 
 export async function generateMetadata({
@@ -35,6 +36,10 @@ export default async function PrivacyPolicyPage({ params }: { params: { locale: 
 
   return (
     <>
+      <BreadcrumbJsonLd
+        locale={locale}
+        items={[{ name: dict.privacy.heading, path: '/polityka' }]}
+      />
       <Navbar />
       <main id="main-content" className={styles.page}>
         <header className={styles.header}>

@@ -3,7 +3,7 @@ import Navbar from '../../../components/Navbar'
 import Footer from '../../../components/Footer'
 import TypeServicePageContent from '../../../components/typeService/TypeServicePageContent'
 import OrderCarsSection from '../../../components/sections/OrderCarsSection'
-import { BreadcrumbJsonLd } from '../../../components/JsonLd'
+import { BreadcrumbJsonLd, ServiceJsonLd } from '../../../components/JsonLd'
 import { buildPageMetadata } from '../../../lib/pageMetadata'
 import { getDictionary } from '../../../../i18n/getDictionary'
 import { isLocale, type Locale } from '../../../../i18n/config'
@@ -35,10 +35,17 @@ export default async function OversizedTransportPage({
 
   return (
     <>
+      <ServiceJsonLd
+        locale={locale}
+        name={dict.oversizedPage.metaTitle.replace(/ - KREONA$/, '')}
+        description={dict.oversizedPage.metaDescription}
+        path="/poslugy/gabaryt"
+        serviceType="Oversized and special equipment import"
+        image="/services/velykogabarytnyy-transport.jpg"
+      />
       <BreadcrumbJsonLd
         locale={locale}
         items={[
-          { name: dict.nav.services, path: '/#poslugy' },
           {
             name: dict.selectionPage.categories.oversized,
             path: '/poslugy/gabaryt',

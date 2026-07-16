@@ -1,8 +1,9 @@
 'use client'
-import { createContext, useContext, useState, useEffect, useCallback } from 'react'
+import { createContext, useContext, useState, useCallback } from 'react'
 import ContactModal from './ContactModal'
 import FloatingCtaButton from './FloatingCtaButton'
 import type { CarInquiry } from '../lib/carInquiry'
+import { useBodyScrollLock } from '../lib/useBodyScrollLock'
 
 type ContactModalContextValue = {
   openForm: (car?: CarInquiry) => void
@@ -27,12 +28,7 @@ export function ContactModalProvider({ children }: { children: React.ReactNode }
     setInquiryCar(null)
   }, [])
 
-  useEffect(() => {
-    if (!formOpen) return
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    return () => { document.body.style.overflow = prev }
-  }, [formOpen])
+  useBodyScrollLock(formOpen)
 
   return (
     <ContactModalContext.Provider value={{ openForm, closeForm, formOpen, inquiryCar }}>

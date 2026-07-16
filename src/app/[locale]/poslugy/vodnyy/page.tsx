@@ -3,7 +3,7 @@ import Navbar from '../../../components/Navbar'
 import Footer from '../../../components/Footer'
 import TypeServicePageContent from '../../../components/typeService/TypeServicePageContent'
 import OrderCarsSection from '../../../components/sections/OrderCarsSection'
-import { BreadcrumbJsonLd } from '../../../components/JsonLd'
+import { BreadcrumbJsonLd, ServiceJsonLd } from '../../../components/JsonLd'
 import { buildPageMetadata } from '../../../lib/pageMetadata'
 import { getDictionary } from '../../../../i18n/getDictionary'
 import { isLocale, type Locale } from '../../../../i18n/config'
@@ -35,11 +35,21 @@ export default async function WaterTransportPage({
 
   return (
     <>
+      <ServiceJsonLd
+        locale={locale}
+        name={dict.waterPage.metaTitle.replace(/ - KREONA$/, '')}
+        description={dict.waterPage.metaDescription}
+        path="/poslugy/vodnyy"
+        serviceType="Watercraft selection and import"
+        image="/services/types/yacht.jpg"
+      />
       <BreadcrumbJsonLd
         locale={locale}
         items={[
-          { name: dict.nav.services, path: '/#poslugy' },
-          { name: dict.selectionPage.categories.water, path: '/poslugy/vodnyy' },
+          {
+            name: dict.selectionPage.categories.water,
+            path: '/poslugy/vodnyy',
+          },
         ]}
       />
       <Navbar transparent />

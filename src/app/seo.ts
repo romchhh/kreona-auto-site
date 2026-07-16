@@ -20,10 +20,18 @@ export const KEYWORDS = [
   'KREONA',
   'купівля авто з США',
   'доставка авто в Україну',
+  'розмитнення авто Польща',
+  'авто під ключ Вроцлав',
   'Carfax перевірка',
 ] as const
 
-export const OG_IMAGE = '/hero.png'
+/** Social / OG share image (optimized JPEG 1200×630) */
+export const OG_IMAGE = '/og.jpg'
+export const OG_IMAGE_WIDTH = 1200
+export const OG_IMAGE_HEIGHT = 630
+
+/** Raster logo for structured data (Google prefers non-SVG) */
+export const SCHEMA_LOGO = '/favicon.png'
 
 export function absoluteUrl(path = '/') {
   const normalized = path.startsWith('/') ? path : `/${path}`

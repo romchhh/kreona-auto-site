@@ -7,6 +7,7 @@ import { useContactModal } from './ContactModalContext'
 import { useDictionary, useLocale } from '../../i18n/LocaleProvider'
 import { localePath } from '../../i18n/paths'
 import { phoneTel } from '../seo'
+import { useBodyScrollLock } from '../lib/useBodyScrollLock'
 import styles from './Navbar.module.css'
 
 function WhatsAppIcon() {
@@ -31,14 +32,15 @@ const WHATSAPP_DISPLAY = formatWhatsAppDisplay(BRAND.phone)
 export default function Navbar({ transparent = false }: { transparent?: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const { openForm, formOpen } = useContactModal()
+  const { openForm } = useContactModal()
   const dict = useDictionary()
   const locale = useLocale()
 
   const navLinks = [
     { href: localePath(locale, '/avto'), label: dict.nav.inStock },
-    { href: localePath(locale, '/#pid-zamovlennya'), label: dict.nav.onOrder },
     { href: localePath(locale, '/poslugy/pidbir'), label: dict.nav.selection },
+    { href: localePath(locale, '/poslugy/vodnyy'), label: dict.nav.water },
+    { href: localePath(locale, '/poslugy/gabaryt'), label: dict.nav.oversized },
     { href: localePath(locale, '/#poslugy'), label: dict.nav.services },
     { href: localePath(locale, '/#yak-pratsyuyemo'), label: dict.nav.howWeWork },
     { href: localePath(locale, '/kontakty'), label: dict.nav.contacts },
@@ -50,10 +52,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  useEffect(() => {
-    document.body.style.overflow = (menuOpen || formOpen) ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [menuOpen, formOpen])
+  useBodyScrollLock(menuOpen)
 
   const onHero = transparent && !scrolled
 
@@ -94,6 +93,18 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
           <button type="button" className={styles.pillBtn} onClick={() => openForm()}>
             {dict.nav.consultation}
           </button>
+          <a
+            href={WHATSAPP_URL}
+            className={styles.pillBtn}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`WhatsApp ${BRAND.phone}`}
+          >
+            <span className={styles.pillIconWrap}>
+              <WhatsAppIcon />
+            </span>
+            {WHATSAPP_DISPLAY}
+          </a>
           <button className={styles.hamburger} onClick={() => setMenuOpen(true)} aria-label={dict.nav.openMenu}>
             <span/><span/><span/>
           </button>

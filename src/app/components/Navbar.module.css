@@ -69,13 +69,14 @@
   align-items: center;
   justify-content: center;
   flex-wrap: nowrap;
-  gap: clamp(6px, 0.7vw, 14px);
+  gap: clamp(16px, 1.6vw, 32px);
   min-width: 0;
+  padding: 0 12px;
 }
 
 .center a {
   font-family: var(--font-sans);
-  font-size: clamp(10px, 0.78vw, 12px);
+  font-size: clamp(12px, 0.95vw, 14px);
   font-weight: 600;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -285,11 +286,11 @@
   }
 
   .center {
-    gap: clamp(10px, 0.9vw, 18px);
+    gap: clamp(18px, 1.8vw, 36px);
   }
 
   .center a {
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 0.03em;
   }
 
@@ -305,6 +306,13 @@
     display: none;
   }
 
+  .center {
+    gap: clamp(12px, 1.2vw, 20px);
+  }
+
+  .center a {
+    font-size: 12.5px;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -324,27 +332,31 @@
 
   .mobileActions {
     display: flex;
+    gap: 6px;
+    flex-shrink: 1;
+    min-width: 0;
   }
 
   .mobileActions .pillBtn {
-    min-height: 40px;
-    padding: 0 14px;
-    font-size: 12px;
-    gap: 8px;
+    min-height: 36px;
+    padding: 0 10px;
+    font-size: 11px;
+    gap: 6px;
   }
 
   .mobileActions .pillBtn:has(.pillIconWrap) {
-    padding-left: 6px;
+    padding-left: 4px;
+    padding-right: 10px;
   }
 
   .mobileActions .pillIconWrap {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
   }
 
   .mobileActions .pillIconWrap svg {
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
   }
 
   .hamburger {
@@ -357,20 +369,43 @@
   }
 
   .brandLogo {
-    height: 28px;
+    height: 26px;
   }
 
   .brand {
-    gap: 10px;
+    gap: 8px;
+    flex-shrink: 0;
   }
 }
 
 @media (max-width: 768px) {
   .nav {
-    padding: 16px 20px;
+    padding: 14px 12px;
+    gap: 8px;
   }
 
   .scrolled {
-    padding: 12px 20px;
+    padding: 10px 12px;
+  }
+
+  .mobileActions {
+    gap: 5px;
+  }
+
+  .mobileActions .pillBtn {
+    min-height: 34px;
+    padding: 0 8px;
+    font-size: 10px;
+  }
+
+  .mobileActions .pillBtn:has(.pillIconWrap) {
+    padding-left: 3px;
+    padding-right: 8px;
+  }
+}
+
+@media (max-width: 400px) {
+  .mobileActions .pillBtn:not(:has(.pillIconWrap)) {
+    padding: 0 8px;
   }
 }

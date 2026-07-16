@@ -5,6 +5,7 @@ import { localeHtmlLang } from '../../i18n/config'
 import {
   OG_IMAGE,
   SAME_AS,
+  SCHEMA_LOGO,
   SITE_NAME,
   SITE_URL,
   absoluteUrl,
@@ -34,8 +35,14 @@ export default function JsonLd({ locale, dict }: Props) {
     '@type': 'AutoDealer',
     '@id': `${SITE_URL}/#organization`,
     name: SITE_NAME,
+    legalName: SITE_NAME,
     url: SITE_URL,
-    logo: absoluteUrl(BRAND.logo),
+    logo: {
+      '@type': 'ImageObject',
+      url: absoluteUrl(SCHEMA_LOGO),
+      width: 500,
+      height: 500,
+    },
     image: absoluteUrl(OG_IMAGE),
     description: dict.seo.defaultDescription,
     email: BRAND.email,
@@ -53,6 +60,7 @@ export default function JsonLd({ locale, dict }: Props) {
       latitude: 51.1254,
       longitude: 17.0335,
     },
+    hasMap: BRAND.mapLink,
     telephone: phoneTel(BRAND.phone),
     contactPoint: BRAND.phones.map((phone) => ({
       '@type': 'ContactPoint',
@@ -75,6 +83,8 @@ export default function JsonLd({ locale, dict }: Props) {
       { '@type': 'Country', name: 'Ukraine' },
     ],
     priceRange: '€€€',
+    currenciesAccepted: 'EUR, PLN, USD',
+    paymentAccepted: 'Cash, Bank Transfer',
     sameAs: [...SAME_AS],
   }
 
@@ -84,9 +94,10 @@ export default function JsonLd({ locale, dict }: Props) {
     '@id': `${SITE_URL}/#website`,
     url: SITE_URL,
     name: SITE_NAME,
+    alternateName: 'KREONA',
     description: dict.seo.defaultDescription,
     publisher: { '@id': `${SITE_URL}/#organization` },
-    inLanguage: lang,
+    inLanguage: ['uk', 'pl', 'en'],
   }
 
   const faqPage = {
@@ -112,6 +123,7 @@ export default function JsonLd({ locale, dict }: Props) {
     isPartOf: { '@id': `${SITE_URL}/#website` },
     about: { '@id': `${SITE_URL}/#organization` },
     inLanguage: lang,
+    primaryImageOfPage: absoluteUrl(OG_IMAGE),
   }
 
   return (
@@ -145,7 +157,7 @@ export function BreadcrumbJsonLd({
         '@type': 'ListItem',
         position: index + 2,
         name: item.name,
-        item: absoluteUrl(`/${locale}${item.path}`),
+        item: absoluteUrl(`/${locale}${item.path.startsWith('/') ? item.path : `/${item.path}`}`),
       })),
     ],
   }
@@ -153,26 +165,42 @@ export function BreadcrumbJsonLd({
   return <JsonLdScript data={data} />
 }
 
+type ServiceJsonLdProps = {
+  locale: Locale
+  name: string
+  description: string
+  path: string
+  serviceType: string
+  image?: string
+}
+
 export function ServiceJsonLd({
   locale,
-  dict,
-}: {
-  locale: Locale
-  dict: Dictionary
-}) {
-  const page = dict.selectionPage
+  name,
+  description,
+  path,
+  serviceType,
+  image = OG_IMAGE,
+}: ServiceJsonLdProps) {
   const data = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: page.metaTitle.replace(/ - KREONA$/, ''),
-    description: page.metaDescription,
+    name,
+    description,
     provider: { '@id': `${SITE_URL}/#organization` },
     areaServed: [
       { '@type': 'Country', name: 'Poland' },
       { '@type': 'Country', name: 'Ukraine' },
     ],
-    url: absoluteUrl(`/${locale}/poslugy/pidbir`),
-    serviceType: 'Vehicle selection and import',
+    url: absoluteUrl(`/${locale}${path}`),
+    serviceType,
+    image: absoluteUrl(image),
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'EUR',
+      url: absoluteUrl(`/${locale}${path}`),
+    },
   }
 
   return <JsonLdScript data={data} />
@@ -216,6 +244,7 @@ export function InventoryJsonLd({
           priceCurrency: 'EUR',
           price: car.price.replace(/[^\d]/g, ''),
           availability: 'https://schema.org/InStock',
+          url: absoluteUrl(`/${locale}/avto`),
         },
       },
     })),

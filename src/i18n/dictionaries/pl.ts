@@ -2,11 +2,12 @@ import type { Dictionary } from './uk'
 
 export const pl: Dictionary = {
   nav: {
-    inStock: 'Auta na stanie',
-    onOrder: 'Na zamówienie',
-    selection: 'Dobór pojazdów',
+    inStock: 'Na stanie',
+    selection: 'Dobór',
+    water: 'Wodny',
+    oversized: 'Gabaryt',
     services: 'Usługi',
-    howWeWork: 'Jak pracujemy',
+    howWeWork: 'Proces',
     whyUs: 'Dlaczego my',
     faq: 'FAQs',
     contacts: 'Kontakt',
@@ -79,7 +80,7 @@ export const pl: Dictionary = {
   inventory: {
     metaTitle: 'Samochody na stanie - KREONA',
     metaDescription:
-      'Samochody na stanie i w drodze: dostarczone pod klucz z USA, Kanady, Europy i Korei.',
+      'Samochody na stanie i w drodze z USA, Kanady, Europy i Korei. Wybierz auto pod klucz w KREONA we Wrocławiu lub zostaw zgłoszenie na dobór.',
     keywords: [
       'samochody na stanie',
       'auta z USA Polska',
@@ -495,17 +496,26 @@ export const pl: Dictionary = {
   waterPage: {
     metaTitle: 'Transport wodny pod klucz - KREONA',
     metaDescription:
-      'Dobieramy, kupujemy i dostarczamy jachty, jachty żaglowe, skutery wodne i inny transport wodny.',
+      'Dobieramy, kupujemy i dostarczamy jachty, jachty żaglowe, skutery wodne i inny transport wodny pod klucz ze sprawdzonych platform.',
     keywords: ['jachty pod klucz', 'jachty żaglowe', 'skutery wodne', 'dobór jachtu', 'KREONA'],
-    titleBefore: 'Transport ',
-    titleEm: 'wodny',
-    lead: 'Dobieramy, kupujemy i dostarczamy transport wodny pod Twój budżet i oczekiwania.',
+    titleBefore: 'Jachty z USA, Europy i Kanady ',
+    titleEm: 'pod klucz',
+    lead:
+      'Dobieramy jachty, jachty żaglowe i skutery wodne pod budżet - z weryfikacją, transakcją i dostawą.',
+    ctaTitle: 'Zostaw zgłoszenie na dobór',
+    ctaSub: 'Otrzymaj opcje pod budżet z wyceną dostawy',
     aboutTitleBefore: 'Pod klucz ',
     aboutTitleEm: 'od zgłoszenia do dostawy',
     about:
       'Pracujemy ze sprawdzonymi platformami i sprzedawcami: pomagamy wybrać jednostkę, sprawdzić stan, sfinalizować zakup i zorganizować dostawę pod klucz.',
     typesTitleBefore: 'Co ',
     typesTitleEm: 'dobieramy',
+    typeDescriptions: {
+      yacht: 'Jachty motorowe dopasowane do budżetu i sposobu użytkowania.',
+      sailYacht: 'Jachty żaglowe na wypoczynek i dłuższe rejsy.',
+      jetSki: 'Skutery wodne dla dynamicznego wypoczynku na wodzie.',
+      otherWater: 'Łodzie i inny transport wodny pod Twoje zapytanie.',
+    },
     processTitleBefore: 'Jak ',
     processTitleEm: 'pracujemy',
     process: {
@@ -544,23 +554,33 @@ export const pl: Dictionary = {
     },
     midCtaTitle: 'Potrzebujesz transportu wodnego?',
     midCtaText: 'Zostaw zgłoszenie - dobierzemy opcje pod budżet i oczekiwania.',
+    orderCta: 'Zamów',
     imageAlt: 'Jacht żaglowy na morzu - dobór i dostawa z KREONA',
     cta: 'Zostaw zgłoszenie',
   },
   oversizedPage: {
     metaTitle: 'Transport wielkogabarytowy pod klucz - KREONA',
     metaDescription:
-      'Dobieramy i wspieramy sprowadzanie sprzętu specjalnego, budowlanego i rolniczego.',
+      'Dobieramy i wspieramy sprowadzanie sprzętu specjalnego, budowlanego i rolniczego pod klucz - weryfikacja, transakcja i dostawa na miejsce.',
     keywords: ['sprzęt specjalny', 'maszyny budowlane', 'maszyny rolnicze', 'transport wielkogabarytowy', 'KREONA'],
-    titleBefore: 'Transport ',
-    titleEm: 'wielkogabarytowy',
-    lead: 'Dobieramy i wspieramy sprowadzanie techniki wielkogabarytowej ze sprawdzonych platform.',
+    titleBefore: 'Sprzęt specjalny z zagranicy ',
+    titleEm: 'pod klucz',
+    lead:
+      'Dobieramy maszyny budowlane, rolnicze i sprzęt specjalny pod Twoje zadania - z weryfikacją i dostawą na miejsce.',
+    ctaTitle: 'Zostaw zgłoszenie na dobór',
+    ctaSub: 'Otrzymaj opcje pod zadania z wyceną logistyki',
     aboutTitleBefore: 'Pod klucz ',
     aboutTitleEm: 'od poszukiwania do dostawy',
     about:
       'Szukamy sprzętu pod Twoje zadania i budżet, wspieramy weryfikację, transakcję i logistykę - od poszukiwania do dostawy na miejsce.',
     typesTitleBefore: 'Co ',
     typesTitleEm: 'dobieramy',
+    typeDescriptions: {
+      special: 'Ładowarki, dźwigi i inny sprzęt specjalny pod zadania.',
+      construction: 'Koparki, spycharki i maszyny do budownictwa.',
+      agricultural: 'Traktory, kombajny i maszyny rolnicze na sezon.',
+      otherOversized: 'Inny transport wielkogabarytowy pod Twoje zapytanie.',
+    },
     processTitleBefore: 'Jak ',
     processTitleEm: 'pracujemy',
     process: {
@@ -599,6 +619,7 @@ export const pl: Dictionary = {
     },
     midCtaTitle: 'Potrzebujesz sprzętu specjalnego?',
     midCtaText: 'Zostaw zgłoszenie - znajdziemy opcje pod Twoje zadania i budżet.',
+    orderCta: 'Zamów',
     imageAlt: 'Technika specjalistyczna na placu - dobór i dostawa z KREONA',
     cta: 'Zostaw zgłoszenie',
   },

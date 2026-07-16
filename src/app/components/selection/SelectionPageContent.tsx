@@ -16,6 +16,7 @@ import { localePath } from '../../../i18n/paths'
 import { useContactModal } from '../ContactModalContext'
 import { SectionHeading } from '../sections/SectionHeading'
 import SelectionForm, { type SelectionPrefill } from './SelectionForm'
+import { useBodyScrollLock } from '../../lib/useBodyScrollLock'
 import styles from './selection.module.css'
 import heroStyles from '../Hero.module.css'
 import modalStyles from '../ContactModal.module.css'
@@ -203,18 +204,15 @@ export default function SelectionPageContent() {
     setPanelMode('brands')
   }
 
+  useBodyScrollLock(Boolean(activeId))
+
   useEffect(() => {
     if (!activeId) return
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closePanel()
     }
     window.addEventListener('keydown', onKey)
-    return () => {
-      document.body.style.overflow = prev
-      window.removeEventListener('keydown', onKey)
-    }
+    return () => window.removeEventListener('keydown', onKey)
   }, [activeId])
 
   const openCategory = (id: SelectionCategoryId) => {
@@ -243,7 +241,7 @@ export default function SelectionPageContent() {
         <div className={heroStyles.bg} aria-hidden="true">
           <Image
             src="/services/pidbir.png"
-            alt=""
+            alt={page.metaTitle}
             fill
             priority
             sizes="100vw"
@@ -330,10 +328,10 @@ export default function SelectionPageContent() {
                 className={styles.categoryCard}
                 onClick={() => openCategory(category.id)}
               >
-                <div className={styles.categoryMedia} aria-hidden="true">
+                <div className={styles.categoryMedia}>
                   <Image
                     src={category.image}
-                    alt=""
+                    alt={categoryLabel(category.id)}
                     fill
                     sizes="(max-width: 768px) 50vw, 25vw"
                     className={`${styles.categoryImage}${'flip' in category && category.flip ? ` ${styles.categoryImageFlip}` : ''}`}
@@ -488,7 +486,7 @@ export default function SelectionPageContent() {
                       >
                         {logo ? (
                           // eslint-disable-next-line @next/next/no-img-element
-                          <img src={logo} alt="" className={styles.brandLogo} />
+                          <img src={logo} alt={brand} className={styles.brandLogo} />
                         ) : (
                           <span className={styles.brandLogoFallback} aria-hidden="true">
                             {brand.slice(0, 1)}

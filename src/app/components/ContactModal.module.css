@@ -9,6 +9,7 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s;
+  overscroll-behavior: none;
 }
 
 .overlay.open {
