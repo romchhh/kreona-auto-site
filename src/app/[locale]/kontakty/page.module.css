@@ -1,0 +1,58 @@
+.page {
+  padding-top: calc(var(--section-py) + 72px);
+}
+
+.mapSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.mapHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mapWrap {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  overflow: hidden;
+  border-radius: 28px;
+  box-shadow: 0 24px 80px rgba(44, 44, 44, 0.1);
+  background: #e8e8e8;
+}
+
+.mapWrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (min-width: 981px) {
+  .mapWrap {
+    border-radius: 32px;
+    min-height: 460px;
+  }
+}
+
+@media (max-width: 980px) {
+  .page {
+    padding-top: calc(var(--section-py) + 64px);
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding-top: calc(var(--section-py) + 56px);
+  }
+
+  .mapWrap {
+    min-height: 320px;
+    border-radius: 22px;
+  }
+}
