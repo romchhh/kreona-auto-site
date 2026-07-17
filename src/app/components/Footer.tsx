@@ -23,7 +23,7 @@ export default function Footer() {
       </div>
 
       <div className={styles.content}>
-        <a href={localePath(locale)} className={styles.logoMark} aria-label={BRAND.name}>
+        <a href={localePath(locale)} className={styles.logoMark} aria-label={BRAND.shortName}>
           <Logo className={styles.logoImg} />
         </a>
 

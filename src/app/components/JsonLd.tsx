@@ -94,7 +94,7 @@ export default function JsonLd({ locale, dict }: Props) {
     '@id': `${SITE_URL}/#website`,
     url: SITE_URL,
     name: SITE_NAME,
-    alternateName: 'KREONA',
+    alternateName: BRAND.shortName,
     description: dict.seo.defaultDescription,
     publisher: { '@id': `${SITE_URL}/#organization` },
     inLanguage: ['uk', 'pl', 'en'],
@@ -150,7 +150,7 @@ export function BreadcrumbJsonLd({
       {
         '@type': 'ListItem',
         position: 1,
-        name: 'KREONA',
+        name: BRAND.shortName,
         item: absoluteUrl(`/${locale}`),
       },
       ...items.map((item, index) => ({

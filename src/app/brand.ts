@@ -1,5 +1,6 @@
 export const BRAND = {
   name: 'KREONA Sp. z o.o.',
+  shortName: 'KREONA',
   logo: '/logo.svg',
   phones: ['+48 883 255 131', '+48 793 177 295'] as const,
   phone: '+48 883 255 131',

@@ -59,7 +59,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
   return (
     <>
       <nav className={`${styles.nav} ${onHero ? styles.onHero : styles.scrolled}`}>
-        <a href={localePath(locale)} className={styles.brand} aria-label={BRAND.name}>
+        <a href={localePath(locale)} className={styles.brand} aria-label={BRAND.shortName}>
           <Logo className={styles.brandLogo} />
         </a>
 
@@ -113,7 +113,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
 
       <div className={`${styles.drawer} ${menuOpen ? styles.open : ''}`} role="dialog" aria-modal="true">
         <div className={styles.drawerTop}>
-          <a href={localePath(locale)} className={styles.drawerBrand} onClick={() => setMenuOpen(false)} aria-label={BRAND.name}>
+          <a href={localePath(locale)} className={styles.drawerBrand} onClick={() => setMenuOpen(false)} aria-label={BRAND.shortName}>
             <Logo className={styles.brandLogo} />
           </a>
           <button className={styles.drawerClose} onClick={() => setMenuOpen(false)} aria-label={dict.nav.closeMenu}>

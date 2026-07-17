@@ -1,9 +1,8 @@
 import type { MetadataRoute } from 'next'
-import { SITE_NAME } from './seo'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: SITE_NAME,
+    name: 'KREONA',
     short_name: 'KREONA',
     description:
       'Автомобілі з США, Європи, Канади та Кореї під ключ - підбір, купівля та доставка.',
