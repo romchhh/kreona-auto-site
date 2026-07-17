@@ -12,9 +12,9 @@ import styles from './page.module.css'
 export async function generateMetadata({
   params,
 }: {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }): Promise<Metadata> {
-  const locale = (isLocale(params.locale) ? params.locale : 'uk') as Locale
+  const locale = (isLocale((await params).locale) ? (await params).locale : 'uk') as Locale
   const dict = await getDictionary(locale)
   return buildPageMetadata({
     locale,
@@ -26,8 +26,8 @@ export async function generateMetadata({
   })
 }
 
-export default async function PrivacyPolicyPage({ params }: { params: { locale: string } }) {
-  const locale = (isLocale(params.locale) ? params.locale : 'uk') as Locale
+export default async function PrivacyPolicyPage({ params }: { params: Promise<{ locale: string }> }) {
+  const locale = (isLocale((await params).locale) ? (await params).locale : 'uk') as Locale
   const dict = await getDictionary(locale)
   const siteUrl = absoluteUrl(`/${locale}`)
   const s1Body = dict.privacy.s1Body

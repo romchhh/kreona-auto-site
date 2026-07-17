@@ -10,7 +10,7 @@ import styles from '../admin.module.css'
 export const dynamic = 'force-dynamic'
 
 export default async function AdminHeatmapPage() {
-  if (!getAdminSessionFromCookies()) redirect('/admin/login')
+  if (!(await getAdminSessionFromCookies())) redirect('/admin/login')
 
   const stats = await getDashboardStats(30)
 

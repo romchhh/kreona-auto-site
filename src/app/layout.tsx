@@ -105,8 +105,8 @@ export const viewport: Viewport = {
   colorScheme: 'light',
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const headerLocale = headers().get('x-locale') ?? ''
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const headerLocale = (await headers()).get('x-locale') ?? ''
   const locale: Locale = isLocale(headerLocale) ? headerLocale : 'uk'
   const htmlLang = localeHtmlLang[locale]
 

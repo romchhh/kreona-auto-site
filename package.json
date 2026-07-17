@@ -6,22 +6,26 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "better-sqlite3": "^12.11.1",
-    "next": "14.2.3",
-    "react": "^18",
-    "react-dom": "^18",
+    "next": "16.2.10",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "resend": "^6.17.2"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.3",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9.22.0",
+    "eslint-config-next": "16.2.10",
     "typescript": "^5"
+  },
+  "overrides": {
+    "postcss": "8.5.10"
   }
 }

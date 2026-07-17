@@ -11,9 +11,9 @@ import { isLocale, type Locale } from '../../../../i18n/config'
 export async function generateMetadata({
   params,
 }: {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }): Promise<Metadata> {
-  const locale = (isLocale(params.locale) ? params.locale : 'uk') as Locale
+  const locale = (isLocale((await params).locale) ? (await params).locale : 'uk') as Locale
   const dict = await getDictionary(locale)
   return buildPageMetadata({
     locale,
@@ -28,9 +28,9 @@ export async function generateMetadata({
 export default async function SelectionServicePage({
   params,
 }: {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
-  const locale = (isLocale(params.locale) ? params.locale : 'uk') as Locale
+  const locale = (isLocale((await params).locale) ? (await params).locale : 'uk') as Locale
   const dict = await getDictionary(locale)
 
   return (

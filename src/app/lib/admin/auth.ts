@@ -80,8 +80,9 @@ export function parseAdminSessionToken(token: string | undefined | null): { user
   }
 }
 
-export function setAdminSessionCookie(token: string) {
-  cookies().set(COOKIE, token, {
+export async function setAdminSessionCookie(token: string) {
+  const jar = await cookies()
+  jar.set(COOKIE, token, {
     httpOnly: true,
     sameSite: 'lax',
     secure: process.env.NODE_ENV === 'production',
@@ -90,8 +91,9 @@ export function setAdminSessionCookie(token: string) {
   })
 }
 
-export function clearAdminSessionCookie() {
-  cookies().set(COOKIE, '', {
+export async function clearAdminSessionCookie() {
+  const jar = await cookies()
+  jar.set(COOKIE, '', {
     httpOnly: true,
     sameSite: 'lax',
     secure: process.env.NODE_ENV === 'production',
@@ -100,8 +102,9 @@ export function clearAdminSessionCookie() {
   })
 }
 
-export function getAdminSessionFromCookies() {
-  return parseAdminSessionToken(cookies().get(COOKIE)?.value)
+export async function getAdminSessionFromCookies() {
+  const jar = await cookies()
+  return parseAdminSessionToken(jar.get(COOKIE)?.value)
 }
 
 export function getAdminSessionFromRequest(request: Request) {

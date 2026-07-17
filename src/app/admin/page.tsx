@@ -9,7 +9,7 @@ import styles from './admin.module.css'
 export const dynamic = 'force-dynamic'
 
 export default async function AdminDashboardPage() {
-  if (!getAdminSessionFromCookies()) redirect('/admin/login')
+  if (!(await getAdminSessionFromCookies())) redirect('/admin/login')
 
   const stats = await getDashboardStats(30)
   const maxViews = Math.max(1, ...stats.byDay.map((d) => d.views))

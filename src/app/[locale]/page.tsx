@@ -13,9 +13,9 @@ export const dynamic = 'force-dynamic'
 export default async function HomePage({
   params,
 }: {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
-  const locale = (isLocale(params.locale) ? params.locale : 'uk') as Locale
+  const locale = (isLocale((await params).locale) ? (await params).locale : 'uk') as Locale
   const dict = await getDictionary(locale)
   const cars = await getPublishedCarsForLocale(locale)
 
