@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { defaultLocale, isLocale } from './i18n/config'
+import { ADMIN_SESSION_COOKIE } from './app/lib/admin/constants'
 
 const PATH_REDIRECTS: Record<string, string> = {
   '/avto-v-nayavnosti': '/avto',
@@ -18,6 +19,19 @@ export function middleware(request: NextRequest) {
     pathname.startsWith('/cars') ||
     pathname.includes('.')
   ) {
+    return NextResponse.next()
+  }
+
+  if (pathname.startsWith('/admin')) {
+    if (pathname === '/admin/login' || pathname.startsWith('/admin/login/')) {
+      return NextResponse.next()
+    }
+    if (!request.cookies.get(ADMIN_SESSION_COOKIE)?.value) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/admin/login'
+      url.searchParams.set('next', pathname)
+      return NextResponse.redirect(url)
+    }
     return NextResponse.next()
   }
 

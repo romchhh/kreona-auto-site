@@ -67,6 +67,9 @@ export default function ContactForm({ idPrefix = '', onSuccess, className, inqui
           carSearch: form.carSearch.trim(),
           comment: form.comment.trim(),
           car: inquiryCar ?? undefined,
+          source: inquiryCar ? 'inventory' : 'contact',
+          locale,
+          path: typeof window !== 'undefined' ? window.location.pathname : undefined,
           utm,
         }),
       })
@@ -75,6 +78,14 @@ export default function ContactForm({ idPrefix = '', onSuccess, className, inqui
         setStatus('error')
         return
       }
+
+      navigator.sendBeacon?.(
+        '/api/analytics/collect',
+        new Blob(
+          [JSON.stringify({ type: 'conversion', path: window.location.pathname, locale, sessionId: 'form', country: 'Unknown', city: '', referrer: '', screenW: window.innerWidth, screenH: window.innerHeight })],
+          { type: 'application/json' },
+        ),
+      )
 
       setStatus('success')
       onSuccess?.()

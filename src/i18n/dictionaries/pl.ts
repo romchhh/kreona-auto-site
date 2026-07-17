@@ -103,6 +103,7 @@ export const pl: Dictionary = {
     inquire: 'Zostaw zgłoszenie',
     pickCar: 'Dobierz auto',
     automatic: 'Automatyczna',
+    manual: 'Manualna',
     delivered: 'Dostarczono',
     inTransit: 'W drodze',
     turnkey: 'Pod klucz',

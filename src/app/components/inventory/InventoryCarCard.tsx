@@ -1,12 +1,12 @@
 'use client'
 import Image from 'next/image'
-import { CARS_IN_STOCK } from '../../data/homeSections'
+import type { InventoryCar } from '../../lib/cars'
 import { buildCarInquiry } from '../../lib/carInquiry'
 import { useDictionary } from '../../../i18n/LocaleProvider'
 import { useContactModal } from '../ContactModalContext'
 import styles from '../sections/sections.module.css'
 
-export type InventoryCar = (typeof CARS_IN_STOCK)[number]
+export type { InventoryCar }
 
 function TagChip({ label }: { label: string }) {
   return (

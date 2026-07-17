@@ -1,14 +1,14 @@
 'use client'
 import Link from 'next/link'
 import { useRef, useState, useCallback, useEffect } from 'react'
-import { CARS_IN_STOCK } from '../../data/homeSections'
+import type { InventoryCar } from '../../lib/cars'
 import { useDictionary, useLocale } from '../../../i18n/LocaleProvider'
 import { localePath } from '../../../i18n/paths'
 import { useContactModal } from '../ContactModalContext'
 import InventoryCarCard from '../inventory/InventoryCarCard'
 import styles from './sections.module.css'
 
-export default function InventorySection() {
+export default function InventorySection({ cars }: { cars: InventoryCar[] }) {
   const dict = useDictionary()
   const locale = useLocale()
   const trackRef = useRef<HTMLDivElement>(null)
@@ -78,7 +78,7 @@ export default function InventorySection() {
 
           <div className={styles.inventoryViewport}>
             <div ref={trackRef} className={styles.inventoryTrack}>
-              {CARS_IN_STOCK.map((car) => (
+              {cars.map((car) => (
                 <div key={car.id} className={styles.inventorySlide}>
                   <InventoryCarCard car={car} />
                 </div>

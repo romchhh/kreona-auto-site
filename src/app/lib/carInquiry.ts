@@ -1,4 +1,4 @@
-import type { CARS_IN_STOCK } from '../data/homeSections'
+import type { InventoryCar } from './cars'
 
 export type CarInquiry = {
   id: string
@@ -7,7 +7,7 @@ export type CarInquiry = {
   details: string
 }
 
-export function buildCarInquiry(car: (typeof CARS_IN_STOCK)[number]): CarInquiry {
+export function buildCarInquiry(car: InventoryCar): CarInquiry {
   return {
     id: car.id,
     label: `${car.make} ${car.model} - ${car.year}`,

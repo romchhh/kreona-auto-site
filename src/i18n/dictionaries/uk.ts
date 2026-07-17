@@ -101,6 +101,7 @@ export const uk = {
     inquire: 'Залишити заявку',
     pickCar: 'Підібрати авто',
     automatic: 'Автомат',
+    manual: 'Механіка',
     delivered: 'Доставлено',
     inTransit: 'В дорозі',
     turnkey: 'Під ключ',

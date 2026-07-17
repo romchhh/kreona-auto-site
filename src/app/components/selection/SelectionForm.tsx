@@ -86,6 +86,9 @@ export default function SelectionForm({ prefill, onClose, idPrefix = 'selection'
           contact: phone,
           carSearch,
           comment: form.comment.trim() || `Підбір: ${prefill.categoryLabel}`,
+          source: 'selection',
+          locale,
+          path: typeof window !== 'undefined' ? window.location.pathname : undefined,
           utm: getStoredUtm(),
         }),
       })
@@ -94,6 +97,13 @@ export default function SelectionForm({ prefill, onClose, idPrefix = 'selection'
         setStatus('error')
         return
       }
+      navigator.sendBeacon?.(
+        '/api/analytics/collect',
+        new Blob(
+          [JSON.stringify({ type: 'conversion', path: window.location.pathname, locale, sessionId: 'form', country: 'Unknown', city: '', referrer: '', screenW: window.innerWidth, screenH: window.innerHeight })],
+          { type: 'application/json' },
+        ),
+      )
       setStatus('success')
     } catch {
       setStatus('error')

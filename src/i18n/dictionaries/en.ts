@@ -103,6 +103,7 @@ export const en: Dictionary = {
     inquire: 'Leave a request',
     pickCar: 'Find a car',
     automatic: 'Automatic',
+    manual: 'Manual',
     delivered: 'Delivered',
     inTransit: 'In transit',
     turnkey: 'Turnkey',

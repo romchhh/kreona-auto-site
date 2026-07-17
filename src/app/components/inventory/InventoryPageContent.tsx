@@ -1,11 +1,11 @@
 'use client'
-import { CARS_IN_STOCK } from '../../data/homeSections'
+import type { InventoryCar } from '../../lib/cars'
 import { useDictionary } from '../../../i18n/LocaleProvider'
 import InventoryCarCard from './InventoryCarCard'
 import styles from '../sections/sections.module.css'
 import pageStyles from './inventoryPage.module.css'
 
-export default function InventoryPageContent() {
+export default function InventoryPageContent({ cars }: { cars: InventoryCar[] }) {
   const dict = useDictionary()
 
   return (
@@ -20,7 +20,7 @@ export default function InventoryPageContent() {
         </div>
 
         <div className={pageStyles.grid}>
-          {CARS_IN_STOCK.map((car) => (
+          {cars.map((car) => (
             <InventoryCarCard key={car.id} car={car} />
           ))}
         </div>

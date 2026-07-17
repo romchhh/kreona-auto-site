@@ -4,6 +4,7 @@ import Script from 'next/script'
 import './globals.css'
 import './west-auto.css'
 import UtmCapture from './components/UtmCapture'
+import AnalyticsTracker from './components/AnalyticsTracker'
 import { isLocale, localeHtmlLang, type Locale } from '../i18n/config'
 import {
   DEFAULT_DESCRIPTION,
@@ -140,6 +141,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           Skip to content
         </a>
         <UtmCapture />
+        <AnalyticsTracker />
         <div className="west-auto">{children}</div>
       </body>
     </html>

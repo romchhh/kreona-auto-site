@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import { addLead, getLeadNotifyEmails } from '../../lib/admin/store'
 
 const UTM_KEYS = [
   'utm_source',
@@ -18,6 +19,9 @@ type ContactPayload = {
   phone?: string
   carSearch?: string
   comment?: string
+  source?: 'contact' | 'selection' | 'inventory'
+  locale?: string
+  path?: string
   car?: {
     id?: string
     label?: string
@@ -65,6 +69,7 @@ export async function POST(request: Request) {
     const comment = body.comment?.trim() || '-'
     const car = body.car
     const utm = normalizeUtm(body.utm)
+    const source = body.source || (car?.id ? 'inventory' : 'contact')
 
     if (!name || !contact) {
       return NextResponse.json(
@@ -73,16 +78,30 @@ export async function POST(request: Request) {
       )
     }
 
+    try {
+      await addLead({
+        name,
+        contact,
+        carSearch,
+        comment,
+        source,
+        car,
+        utm,
+        locale: body.locale,
+        path: body.path,
+      })
+    } catch (err) {
+      console.error('[contact] Failed to persist lead:', err)
+    }
+
     const apiKey = getEnv('RESEND_API_KEY')
     const emailFrom = getEnv('EMAIL_FROM')
-    const emailTo = getEnv('EMAIL_TO')
+    const emailToList = await getLeadNotifyEmails()
 
-    if (!apiKey || !emailFrom || !emailTo) {
-      console.error('[contact] Missing RESEND_API_KEY, EMAIL_FROM or EMAIL_TO')
-      return NextResponse.json(
-        { error: 'Сервіс тимчасово недоступний.' },
-        { status: 503 },
-      )
+    if (!apiKey || !emailFrom || emailToList.length === 0) {
+      console.error('[contact] Missing RESEND_API_KEY, EMAIL_FROM or lead notify emails')
+      // Lead is saved — still OK for admin, but notify client of email issue mildly
+      return NextResponse.json({ ok: true, emailed: false })
     }
 
     const sentAt = new Date().toLocaleString('uk-UA', {
@@ -120,7 +139,7 @@ utm_term=${escapeHtml(utm.utm_term)}</pre>
     const resend = new Resend(apiKey)
     const { error } = await resend.emails.send({
       from: emailFrom,
-      to: [emailTo],
+      to: emailToList,
       replyTo: contact.includes('@') ? contact : undefined,
       subject,
       html,

@@ -4,8 +4,11 @@ import HomeSections from '../components/HomeSections'
 import ContactSection from '../components/ContactSection'
 import Footer from '../components/Footer'
 import JsonLd from '../components/JsonLd'
+import { getPublishedCarsForLocale } from '../lib/cars'
 import { getDictionary } from '../../i18n/getDictionary'
 import { isLocale, type Locale } from '../../i18n/config'
+
+export const dynamic = 'force-dynamic'
 
 export default async function HomePage({
   params,
@@ -14,6 +17,7 @@ export default async function HomePage({
 }) {
   const locale = (isLocale(params.locale) ? params.locale : 'uk') as Locale
   const dict = await getDictionary(locale)
+  const cars = await getPublishedCarsForLocale(locale)
 
   return (
     <>
@@ -21,7 +25,7 @@ export default async function HomePage({
       <Navbar transparent />
       <main id="main-content">
         <Hero />
-        <HomeSections />
+        <HomeSections cars={cars} />
         <ContactSection />
       </main>
       <Footer />
