@@ -38,18 +38,19 @@ export async function upsertCar(car: InventoryCarRecord) {
   getDb()
     .prepare(
       `INSERT INTO cars (
-        id, image, make, model, year, engine, mileage, gearbox_key, price, status_key,
+        id, image, images_json, make, model, year, engine, mileage, gearbox_key, price, status_key,
         route_uk, route_pl, route_en, body_class_uk, body_class_pl, body_class_en,
         description_uk, description_pl, description_en, format_key, result_key,
         published, sort_order, created_at, updated_at
       ) VALUES (
-        @id, @image, @make, @model, @year, @engine, @mileage, @gearbox_key, @price, @status_key,
+        @id, @image, @images_json, @make, @model, @year, @engine, @mileage, @gearbox_key, @price, @status_key,
         @route_uk, @route_pl, @route_en, @body_class_uk, @body_class_pl, @body_class_en,
         @description_uk, @description_pl, @description_en, @format_key, @result_key,
         @published, @sort_order, @created_at, @updated_at
       )
       ON CONFLICT(id) DO UPDATE SET
         image = excluded.image,
+        images_json = excluded.images_json,
         make = excluded.make,
         model = excluded.model,
         year = excluded.year,

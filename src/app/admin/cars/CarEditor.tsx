@@ -6,7 +6,13 @@ import Link from 'next/link'
 import AdminShell from '../AdminShell'
 import AdminHint from '../AdminHint'
 import styles from '../admin.module.css'
-import { emptyLocalized, type InventoryCarRecord, type LocaleCode, type LocalizedString } from '../../lib/admin/types'
+import {
+  emptyLocalized,
+  normalizeCarImages,
+  type InventoryCarRecord,
+  type LocaleCode,
+  type LocalizedString,
+} from '../../lib/admin/types'
 
 type Props = {
   mode: 'create' | 'edit'
@@ -30,7 +36,7 @@ export default function CarEditor({ mode, initial }: Props) {
     gearboxKey: initial?.gearboxKey || 'automatic',
     price: initial?.price || '',
     statusKey: initial?.statusKey || 'delivered',
-    image: initial?.image || '',
+    images: normalizeCarImages(initial?.image || '', initial?.images),
     sortOrder: initial?.sortOrder ?? 1,
     published: initial?.published ?? true,
     route: initial?.route || emptyLocalized(),
@@ -45,23 +51,28 @@ export default function CarEditor({ mode, initial }: Props) {
     }))
   }
 
-  const uploadFile = async (file: File) => {
-    if (!file.type.startsWith('image/')) {
+  const uploadFiles = async (files: FileList | File[]) => {
+    const list = Array.from(files).filter((f) => f.type.startsWith('image/'))
+    if (!list.length) {
       setError('Оберіть файл зображення (JPG, PNG, WebP, GIF)')
       return
     }
     setUploading(true)
     setError('')
     try {
-      const body = new FormData()
-      body.append('file', file)
-      const res = await fetch('/api/admin/upload', { method: 'POST', body })
-      const data = await res.json()
-      if (!res.ok) {
-        setError(data.error || 'Помилка завантаження')
-        return
+      const uploaded: string[] = []
+      for (const file of list) {
+        const body = new FormData()
+        body.append('file', file)
+        const res = await fetch('/api/admin/upload', { method: 'POST', body })
+        const data = await res.json()
+        if (!res.ok) {
+          setError(data.error || 'Помилка завантаження')
+          return
+        }
+        uploaded.push(data.url)
       }
-      setForm((prev) => ({ ...prev, image: data.url }))
+      setForm((prev) => ({ ...prev, images: [...prev.images, ...uploaded] }))
     } catch {
       setError('Не вдалося завантажити зображення')
     } finally {
@@ -72,25 +83,41 @@ export default function CarEditor({ mode, initial }: Props) {
   const onDrop = (e: React.DragEvent) => {
     e.preventDefault()
     setDragOver(false)
-    const file = e.dataTransfer.files?.[0]
-    if (file) void uploadFile(file)
+    if (e.dataTransfer.files?.length) void uploadFiles(e.dataTransfer.files)
+  }
+
+  const removeImage = (url: string) => {
+    setForm((prev) => ({ ...prev, images: prev.images.filter((src) => src !== url) }))
+  }
+
+  const moveImage = (index: number, direction: -1 | 1) => {
+    setForm((prev) => {
+      const next = [...prev.images]
+      const target = index + direction
+      if (target < 0 || target >= next.length) return prev
+      ;[next[index], next[target]] = [next[target], next[index]]
+      return { ...prev, images: next }
+    })
   }
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    if (!form.image.trim()) {
-      setError('Додайте зображення авто')
+    if (!form.images.length) {
+      setError('Додайте хоча б одне зображення авто')
       return
     }
     setSaving(true)
     setError('')
     try {
+      const images = normalizeCarImages(form.images[0], form.images)
       const res = await fetch('/api/admin/cars', {
         method: mode === 'create' ? 'POST' : 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           id: initial?.id,
           ...form,
+          image: images[0],
+          images,
           year: Number(form.year),
           sortOrder: Number(form.sortOrder),
         }),
@@ -122,7 +149,8 @@ export default function CarEditor({ mode, initial }: Props) {
       <AdminHint title="Як заповнювати картку авто">
         <ul>
           <li>
-            <strong>Фото</strong> — перетягніть файл у зону завантаження або вкажіть шлях `/cars/...`.
+            <strong>Фото</strong> — можна додати кілька зображень; перше буде обкладинкою. Стрілки на
+            сайті перемикають галерею.
           </li>
           <li>
             <strong>Route / Class / Description</strong> — окремі тексти для UK, PL, EN; порожнє поле не
@@ -191,9 +219,36 @@ export default function CarEditor({ mode, initial }: Props) {
           </div>
 
           <div className={`${styles.field} ${styles.full}`}>
-            <label>Зображення</label>
+            <label>Зображення ({form.images.length})</label>
+            {form.images.length ? (
+              <div className={styles.imageGallery}>
+                {form.images.map((src, index) => (
+                  <div key={src} className={styles.imageThumb}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={src} alt="" />
+                    <div className={styles.imageThumbActions}>
+                      <button type="button" className={styles.btnGhost} onClick={() => moveImage(index, -1)} disabled={index === 0}>
+                        ←
+                      </button>
+                      <button
+                        type="button"
+                        className={styles.btnGhost}
+                        onClick={() => moveImage(index, 1)}
+                        disabled={index === form.images.length - 1}
+                      >
+                        →
+                      </button>
+                      <button type="button" className={styles.btnDanger} onClick={() => removeImage(src)}>
+                        ×
+                      </button>
+                    </div>
+                    {index === 0 ? <span className={styles.imageCoverBadge}>Обкладинка</span> : null}
+                  </div>
+                ))}
+              </div>
+            ) : null}
             <div
-              className={`${styles.dropzone} ${dragOver ? styles.dropzoneActive : ''} ${form.image ? styles.dropzoneFilled : ''}`}
+              className={`${styles.dropzone} ${dragOver ? styles.dropzoneActive : ''} ${form.images.length ? styles.dropzoneFilled : ''}`}
               onDragEnter={(e) => {
                 e.preventDefault()
                 setDragOver(true)
@@ -221,29 +276,17 @@ export default function CarEditor({ mode, initial }: Props) {
                 ref={fileInputRef}
                 type="file"
                 accept="image/jpeg,image/png,image/webp,image/gif"
+                multiple
                 hidden
                 onChange={(e) => {
-                  const file = e.target.files?.[0]
-                  if (file) void uploadFile(file)
+                  if (e.target.files?.length) void uploadFiles(e.target.files)
                   e.target.value = ''
                 }}
               />
-              {form.image ? (
-                <div className={styles.dropPreview}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={form.image} alt="" />
-                  <div className={styles.dropMeta}>
-                    <strong>{uploading ? 'Завантаження…' : 'Зображення готове'}</strong>
-                    <span>{form.image}</span>
-                    <span className={styles.dropHint}>Перетягніть нове фото або натисніть, щоб замінити</span>
-                  </div>
-                </div>
-              ) : (
-                <div className={styles.dropEmpty}>
-                  <strong>{uploading ? 'Завантаження…' : 'Перетягніть фото сюди'}</strong>
-                  <span>або натисніть, щоб обрати файл · JPG, PNG, WebP до 8 МБ</span>
-                </div>
-              )}
+              <div className={styles.dropEmpty}>
+                <strong>{uploading ? 'Завантаження…' : 'Перетягніть фото сюди'}</strong>
+                <span>можна кілька файлів · JPG, PNG, WebP до 8 МБ</span>
+              </div>
             </div>
           </div>
 

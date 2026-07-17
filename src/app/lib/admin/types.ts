@@ -9,7 +9,10 @@ export type ResultKey = 'keysInPl'
 
 export type InventoryCarRecord = {
   id: string
+  /** Cover / first photo (kept for compatibility) */
   image: string
+  /** All gallery photos; first item should match `image` when possible */
+  images: string[]
   make: string
   model: string
   year: number
@@ -33,6 +36,7 @@ export type InventoryCarRecord = {
 export type InventoryCar = {
   id: string
   image: string
+  images: string[]
   make: string
   model: string
   year: number
@@ -46,6 +50,14 @@ export type InventoryCar = {
   description: string
   formatKey: FormatKey
   resultKey: ResultKey
+}
+
+export function normalizeCarImages(image: string, images?: string[] | null): string[] {
+  const fromList = Array.isArray(images) ? images.map(String).map((s) => s.trim()).filter(Boolean) : []
+  const cover = image?.trim() || ''
+  if (!fromList.length) return cover ? [cover] : []
+  if (cover && !fromList.includes(cover)) return [cover, ...fromList]
+  return fromList
 }
 
 export type LeadStatus = 'new' | 'in_progress' | 'done' | 'spam'

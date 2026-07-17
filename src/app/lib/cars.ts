@@ -1,13 +1,21 @@
 import type { Locale } from '../../i18n/config'
 import { listPublishedCars } from './admin/store'
-import { localize, type InventoryCar, type InventoryCarRecord, type LocaleCode } from './admin/types'
+import {
+  localize,
+  normalizeCarImages,
+  type InventoryCar,
+  type InventoryCarRecord,
+  type LocaleCode,
+} from './admin/types'
 
 export type { InventoryCar, InventoryCarRecord }
 
 export function toPublicCar(car: InventoryCarRecord, locale: LocaleCode): InventoryCar {
+  const images = normalizeCarImages(car.image, car.images)
   return {
     id: car.id,
-    image: car.image,
+    image: images[0] || car.image,
+    images,
     make: car.make,
     model: car.model,
     year: car.year,

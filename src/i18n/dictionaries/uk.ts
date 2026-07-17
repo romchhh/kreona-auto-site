@@ -92,6 +92,8 @@ export const uk = {
     allCars: 'Всі авто',
     prev: 'Попередній автомобіль',
     next: 'Наступний автомобіль',
+    prevPhoto: 'Попереднє фото',
+    nextPhoto: 'Наступне фото',
     engine: 'Двигун',
     mileage: 'Пробіг',
     gearbox: 'КПП',

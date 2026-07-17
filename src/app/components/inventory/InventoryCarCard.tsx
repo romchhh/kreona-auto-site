@@ -1,5 +1,6 @@
 'use client'
 import Image from 'next/image'
+import { useState, type MouseEvent } from 'react'
 import type { InventoryCar } from '../../lib/cars'
 import { buildCarInquiry } from '../../lib/carInquiry'
 import { useDictionary } from '../../../i18n/LocaleProvider'
@@ -20,12 +21,29 @@ function TagChip({ label }: { label: string }) {
 export default function InventoryCarCard({ car }: { car: InventoryCar }) {
   const dict = useDictionary()
   const { openForm } = useContactModal()
+  const photos = car.images?.length ? car.images : car.image ? [car.image] : []
+  const [photoIndex, setPhotoIndex] = useState(0)
+  const activePhoto = photos[photoIndex] || car.image
+  const hasGallery = photos.length > 1
+
+  const showPrev = (e: MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setPhotoIndex((i) => (i - 1 + photos.length) % photos.length)
+  }
+
+  const showNext = (e: MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setPhotoIndex((i) => (i + 1) % photos.length)
+  }
 
   return (
     <article className={styles.inventoryCard}>
       <div className={styles.inventoryImageWrap}>
         <Image
-          src={car.image}
+          key={activePhoto}
+          src={activePhoto}
           alt={`${car.make} ${car.model} ${car.year}`}
           fill
           sizes="(max-width: 768px) 85vw, (max-width: 1100px) 45vw, 360px"
@@ -42,6 +60,48 @@ export default function InventoryCarCard({ car }: { car: InventoryCar }) {
           <TagChip label={`${dict.inventory.formatPrefix}: ${dict.inventory[car.formatKey]}`} />
           <TagChip label={`${dict.inventory.resultPrefix}: ${dict.inventory[car.resultKey]}`} />
         </div>
+
+        {hasGallery ? (
+          <>
+            <button
+              type="button"
+              className={`${styles.inventoryPhotoNav} ${styles.inventoryPhotoNavPrev}`}
+              onClick={showPrev}
+              aria-label={dict.inventory.prevPhoto}
+            >
+              <svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M11 3 L5 9 L11 15" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              className={`${styles.inventoryPhotoNav} ${styles.inventoryPhotoNavNext}`}
+              onClick={showNext}
+              aria-label={dict.inventory.nextPhoto}
+            >
+              <svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M7 3 L13 9 L7 15" />
+              </svg>
+            </button>
+            <div className={styles.inventoryPhotoDots} aria-hidden="true">
+              {photos.map((src, i) => (
+                <button
+                  key={src}
+                  type="button"
+                  className={`${styles.inventoryPhotoDot} ${i === photoIndex ? styles.inventoryPhotoDotActive : ''}`}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    setPhotoIndex(i)
+                  }}
+                />
+              ))}
+            </div>
+            <span className={styles.inventoryPhotoCounter}>
+              {photoIndex + 1}/{photos.length}
+            </span>
+          </>
+        ) : null}
       </div>
 
       <div className={styles.inventoryMeta}>

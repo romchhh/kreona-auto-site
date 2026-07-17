@@ -94,6 +94,8 @@ export const en: Dictionary = {
     allCars: 'All cars',
     prev: 'Previous car',
     next: 'Next car',
+    prevPhoto: 'Previous photo',
+    nextPhoto: 'Next photo',
     engine: 'Engine',
     mileage: 'Mileage',
     gearbox: 'Gearbox',

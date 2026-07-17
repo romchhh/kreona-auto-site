@@ -94,6 +94,8 @@ export const pl: Dictionary = {
     allCars: 'Wszystkie auta',
     prev: 'Poprzednie auto',
     next: 'Następne auto',
+    prevPhoto: 'Poprzednie zdjęcie',
+    nextPhoto: 'Następne zdjęcie',
     engine: 'Silnik',
     mileage: 'Przebieg',
     gearbox: 'Skrzynia',

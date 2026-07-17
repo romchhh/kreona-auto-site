@@ -1,7 +1,12 @@
 import { NextResponse } from 'next/server'
 import { getAdminSessionFromRequest } from '../../../lib/admin/auth'
 import { countCars, deleteCar, getCar, listCars, upsertCar } from '../../../lib/admin/store'
-import { emptyLocalized, type InventoryCarRecord, type LocalizedString } from '../../../lib/admin/types'
+import {
+  emptyLocalized,
+  normalizeCarImages,
+  type InventoryCarRecord,
+  type LocalizedString,
+} from '../../../lib/admin/types'
 
 function slugify(input: string) {
   return input
@@ -22,6 +27,10 @@ function asLocalized(value: unknown, fallback = ''): LocalizedString {
   }
   if (typeof value === 'string') return emptyLocalized(value)
   return emptyLocalized(fallback)
+}
+
+function asImages(body: Partial<InventoryCarRecord>): string[] {
+  return normalizeCarImages(body.image || '', body.images)
 }
 
 export async function GET(request: Request) {
@@ -61,9 +70,11 @@ export async function POST(request: Request) {
   }
 
   const carCount = await countCars()
+  const images = asImages(body)
   const car: InventoryCarRecord = {
     id,
-    image: body.image?.trim() || '/hero.png',
+    image: images[0] || '/hero.png',
+    images: images.length ? images : ['/hero.png'],
     make,
     model,
     year,
@@ -96,9 +107,18 @@ export async function PUT(request: Request) {
   const existing = await getCar(body.id)
   if (!existing) return NextResponse.json({ error: 'Not found' }, { status: 404 })
 
+  const images =
+    body.images !== undefined || body.image !== undefined
+      ? normalizeCarImages(
+          body.image?.trim() || existing.image,
+          body.images !== undefined ? body.images : existing.images,
+        )
+      : existing.images
+
   const car: InventoryCarRecord = {
     ...existing,
-    image: body.image?.trim() || existing.image,
+    image: images[0] || existing.image,
+    images,
     make: body.make?.trim() || existing.make,
     model: body.model?.trim() || existing.model,
     year: Number(body.year) || existing.year,

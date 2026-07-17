@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "seed:cars": "npx --yes tsx scripts/seed-cars.ts"
   },
   "dependencies": {
     "better-sqlite3": "^12.11.1",

@@ -2,6 +2,7 @@ import Database from 'better-sqlite3'
 import { existsSync, mkdirSync, promises as fs } from 'fs'
 import path from 'path'
 import type { AnalyticsEvent, InventoryCarRecord, LeadRecord } from './types'
+import { normalizeCarImages } from './types'
 
 export const DATA_DIR = path.join(process.cwd(), 'data')
 export const DB_PATH = process.env.DATABASE_PATH || path.join(DATA_DIR, 'kreona.db')
@@ -104,6 +105,11 @@ function migrate(db: Database.Database) {
     CREATE INDEX IF NOT EXISTS idx_analytics_path_type_ts ON analytics_events(path, type, ts);
     CREATE INDEX IF NOT EXISTS idx_analytics_session ON analytics_events(session_id);
   `)
+
+  const carCols = db.prepare(`PRAGMA table_info(cars)`).all() as { name: string }[]
+  if (!carCols.some((c) => c.name === 'images_json')) {
+    db.exec(`ALTER TABLE cars ADD COLUMN images_json TEXT NOT NULL DEFAULT '[]'`)
+  }
 }
 
 export function getDb() {
@@ -111,9 +117,11 @@ export function getDb() {
 }
 
 export function carToRow(c: InventoryCarRecord) {
+  const images = normalizeCarImages(c.image, c.images)
   return {
     id: c.id,
-    image: c.image,
+    image: images[0] || c.image || '',
+    images_json: JSON.stringify(images),
     make: c.make,
     model: c.model,
     year: c.year,
@@ -140,10 +148,23 @@ export function carToRow(c: InventoryCarRecord) {
   }
 }
 
+function parseImagesJson(raw: unknown): string[] {
+  if (!raw) return []
+  try {
+    const parsed = JSON.parse(String(raw)) as unknown
+    return Array.isArray(parsed) ? parsed.map(String).filter(Boolean) : []
+  } catch {
+    return []
+  }
+}
+
 export function rowToCar(r: Record<string, unknown>): InventoryCarRecord {
+  const image = String(r.image || '')
+  const images = normalizeCarImages(image, parseImagesJson(r.images_json))
   return {
     id: String(r.id),
-    image: String(r.image || ''),
+    image: images[0] || image,
+    images,
     make: String(r.make),
     model: String(r.model),
     year: Number(r.year),

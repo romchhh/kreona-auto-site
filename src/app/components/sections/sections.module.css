@@ -312,6 +312,74 @@
   object-fit: cover;
 }
 
+.inventoryPhotoNav {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(20, 20, 20, 0.62);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.inventoryPhotoNav:hover {
+  background: rgba(20, 20, 20, 0.82);
+}
+
+.inventoryPhotoNavPrev {
+  left: 10px;
+}
+
+.inventoryPhotoNavNext {
+  right: 10px;
+}
+
+.inventoryPhotoDots {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 3;
+  display: flex;
+  gap: 6px;
+}
+
+.inventoryPhotoDot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+}
+
+.inventoryPhotoDotActive {
+  background: var(--brand-primary);
+}
+
+.inventoryPhotoCounter {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 3;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(20, 20, 20, 0.62);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  backdrop-filter: blur(6px);
+}
+
 .inventoryBadges {
   position: absolute;
   top: 16px;

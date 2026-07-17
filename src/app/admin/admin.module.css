@@ -835,6 +835,54 @@
   font-weight: 600;
 }
 
+.imageGallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.imageThumb {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #eee;
+  border: 1px solid rgba(44, 44, 44, 0.12);
+}
+
+.imageThumb img {
+  display: block;
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+}
+
+.imageThumbActions {
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.imageThumbActions button {
+  flex: 1;
+  min-height: 28px;
+  padding: 0 6px;
+  font-size: 14px;
+}
+
+.imageCoverBadge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--admin-brand);
+  color: #1a1a1a;
+  font-size: 11px;
+  font-weight: 700;
+}
+
 @media (max-width: 560px) {
   .dropPreview {
     flex-direction: column;
