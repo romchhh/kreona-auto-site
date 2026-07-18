@@ -1,0 +1,359 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  overscroll-behavior: none;
+}
+
+.overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: rgba(44, 44, 44, 0.55);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+
+.modal {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-height: 92dvh;
+  background: #fff;
+  border-radius: 24px 24px 0 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 -12px 48px rgba(44, 44, 44, 0.18);
+}
+
+.overlay.open .modal {
+  transform: translateY(0);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px 14px;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.headerText {
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(18px, 4vw, 22px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--charcoal);
+  line-height: 1.25;
+}
+
+.close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: var(--light-gray);
+  color: var(--charcoal);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.close:hover {
+  background: rgba(44, 44, 44, 0.08);
+}
+
+.scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.galleryBlock {
+  background: #fff;
+}
+
+.gallery {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #f3f3f1;
+}
+
+.galleryStage {
+  position: absolute;
+  inset: 0;
+}
+
+.galleryImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.photoNav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--charcoal);
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transition: background 0.2s;
+}
+
+.photoNav:hover {
+  background: #fff;
+}
+
+.photoNavPrev {
+  left: 12px;
+}
+
+.photoNavNext {
+  right: 12px;
+}
+
+.photoCounter {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--charcoal);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.thumbs {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  background: #fff;
+}
+
+.thumbs::-webkit-scrollbar {
+  display: none;
+}
+
+.thumb {
+  flex: 0 0 auto;
+  width: 76px;
+  height: 52px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #eee;
+  cursor: pointer;
+  transition: border-color 0.2s, opacity 0.2s;
+  opacity: 0.75;
+}
+
+.thumb:hover {
+  opacity: 1;
+}
+
+.thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.thumbActive {
+  border-color: var(--brand-primary);
+  opacity: 1;
+}
+
+.body {
+  padding: 18px 20px max(24px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.price {
+  margin: 0;
+  font-size: clamp(24px, 4vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--brand-primary);
+  line-height: 1.1;
+}
+
+.specs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 14px;
+  border-radius: 16px;
+  background: var(--light-gray);
+}
+
+.specs div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.specs dt {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dark-gray);
+}
+
+.specs dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--charcoal);
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.descriptionBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.descriptionTitle {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dark-gray);
+}
+
+.description {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--charcoal);
+  white-space: pre-wrap;
+}
+
+.inquireBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 4px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 999px;
+  background: var(--brand-primary);
+  color: var(--charcoal);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(154, 177, 28, 0.28);
+}
+
+.inquireBtn:hover {
+  background: var(--brand-primary-dark);
+  transform: translateY(-1px);
+}
+
+@media (min-width: 769px) {
+  .overlay {
+    align-items: center;
+    padding: 32px;
+  }
+
+  .modal {
+    width: 100%;
+    max-width: 760px;
+    max-height: min(90vh, 920px);
+    border-radius: 24px;
+    transform: translateY(24px) scale(0.96);
+    opacity: 0;
+    box-shadow: 0 24px 80px rgba(44, 44, 44, 0.22);
+    transition:
+      transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.3s ease;
+  }
+
+  .overlay.open .modal {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  .header {
+    padding: 22px 28px 16px;
+  }
+
+  .gallery {
+    aspect-ratio: 16 / 9;
+  }
+
+  .thumbs {
+    padding: 14px 28px 0;
+    justify-content: flex-start;
+  }
+
+  .thumb {
+    width: 88px;
+    height: 58px;
+  }
+
+  .body {
+    padding: 22px 28px 28px;
+    gap: 18px;
+  }
+
+  .specs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

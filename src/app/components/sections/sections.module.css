@@ -497,7 +497,34 @@
 .inventoryFooter {
   display: flex;
   align-items: center;
+  gap: 10px;
   margin-top: auto;
+  flex-wrap: wrap;
+}
+
+.inventoryMoreBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.inventoryMoreBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.55);
+  transform: translateY(-1px);
 }
 
 .inventoryDetailsBtn {
@@ -1475,8 +1502,10 @@
     font-size: 12px;
   }
 
-  .inventoryDetailsBtn {
-    width: 100%;
+  .inventoryDetailsBtn,
+  .inventoryMoreBtn {
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .inventoryCta {

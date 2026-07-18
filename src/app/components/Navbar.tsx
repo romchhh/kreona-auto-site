@@ -90,9 +90,6 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
 
         <div className={styles.mobileActions}>
           <LanguageSwitcher />
-          <button type="button" className={styles.pillBtn} onClick={() => openForm()}>
-            {dict.nav.consultation}
-          </button>
           <a
             href={WHATSAPP_URL}
             className={styles.pillBtn}
