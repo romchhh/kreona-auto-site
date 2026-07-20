@@ -32,7 +32,7 @@
       to bottom,
       rgba(90, 90, 90, 0.28) 0%,
       rgba(70, 70, 70, 0.55) 40%,
-      rgba(55, 55, 55, 0.72) 100%
+      rgba(55, 55, 55, 0.78) 100%
     );
 }
 
@@ -54,7 +54,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 56px;
+  gap: 48px;
 }
 
 .logoMark {
@@ -72,60 +72,53 @@
 }
 
 .logoImg {
-  width: clamp(220px, 36vw, 420px);
+  width: clamp(200px, 32vw, 380px);
   height: auto;
 }
 
-.mid {
+.infoGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px 80px;
-  width: min(720px, 100%);
-  align-items: start;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px 32px;
+  width: 100%;
+  max-width: 960px;
 }
 
-.col {
+.infoItem {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
+  min-width: 0;
 }
 
-.col:first-child {
-  align-items: flex-start;
-  text-align: left;
-}
-
-.col:last-child {
-  align-items: flex-end;
-  text-align: right;
-}
-
-.colTitle {
-  margin: 0 0 6px;
-  font-size: 18px;
+.infoLabel {
+  margin: 0;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.01em;
-  text-transform: lowercase;
-  color: #fff;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
 }
 
-.colLink {
-  color: rgba(255, 255, 255, 0.92);
+.infoValue {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.96);
   text-decoration: none;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.5;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.45;
+  word-break: break-word;
   transition: color 0.2s;
 }
 
-.colLink:hover {
+a.infoValue:hover {
   color: var(--primary-red);
 }
 
 .phoneRow {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .whatsappLink {
@@ -141,74 +134,60 @@
   transform: translateY(-1px);
 }
 
-.socialLink {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  transition: color 0.2s, transform 0.15s;
-}
-
-.socialLink:hover {
-  color: var(--primary-red);
-  transform: translateY(-2px);
-}
-
 .bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 14px 20px;
   width: 100%;
-  padding-top: 8px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  margin-top: 4px;
+  padding-top: 18px;
 }
 
-.bottom span,
-.bottom a {
+.bottomMeta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.bottomMeta span,
+.bottomMeta a {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.88);
   text-decoration: none;
   transition: color 0.2s;
 }
 
-.bottom a:hover {
+.bottomMeta a:hover {
   color: #fff;
-}
-
-.bottom a.devCredit,
-.bottom a.devCredit:hover {
-  color: var(--charcoal);
-}
-
-.bottomRight {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
 }
 
 .devCredit {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 6px 14px 6px 6px;
+  gap: 7px;
+  padding: 3px 11px 3px 3px;
   border-radius: 999px;
   background: #fff;
   border: 1.5px solid rgba(154, 177, 28, 0.45);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
   text-decoration: none;
   transition: transform 0.2s, box-shadow 0.2s;
+  color: var(--charcoal);
 }
 
 .devCredit:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.2);
 }
 
 .devLogo {
-  width: 36px;
-  height: 36px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
@@ -219,83 +198,151 @@
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1px;
+  gap: 0;
   line-height: 1.15;
 }
 
-.bottom .devLabel {
-  font-size: 10px;
+.devLabel {
+  font-size: 8px;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: rgba(44, 44, 44, 0.6);
+  color: rgba(44, 44, 44, 0.58);
 }
 
-.bottom .devName {
-  font-size: 14px;
+.devName {
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.02em;
   color: var(--charcoal);
 }
 
-.bottom a.devCredit:hover .devName {
+.devCredit:hover .devName {
   color: var(--primary-red);
+}
+
+@media (max-width: 960px) {
+  .infoGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px 20px;
+  }
 }
 
 @media (max-width: 768px) {
   .footer {
-    min-height: 520px;
+    min-height: 0;
   }
 
   .content {
-    gap: 40px;
-    padding: 56px var(--section-px) 24px;
+    gap: 28px;
+    padding: 48px 20px 20px;
+    align-items: stretch;
   }
 
   .bgFade {
-    height: 100px;
+    height: 88px;
   }
 
-  .mid {
-    grid-template-columns: 1fr;
-    gap: 28px;
-    text-align: center;
+  .logoMark {
+    align-self: center;
   }
 
-  .col:first-child,
-  .col:last-child {
+  .logoImg {
+    width: min(168px, 48vw);
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 20px;
+    max-width: 340px;
+    margin-inline: auto;
+    padding-left: 12px;
+    justify-items: center;
+  }
+
+  .infoItem {
     align-items: center;
     text-align: center;
+    width: 100%;
+  }
+
+  .infoCompany {
+    grid-column: 1 / -1;
+  }
+
+  .infoAddress {
+    grid-column: 1 / -1;
+  }
+
+  .infoPhones {
+    grid-column: 1 / -1;
+  }
+
+  .infoVat,
+  .infoEori {
+    grid-column: 1 / -1;
+  }
+
+  .infoLabel {
+    font-size: 11px;
+    margin-bottom: 1px;
+  }
+
+  .infoValue {
+    font-size: 14px;
+  }
+
+  .phoneRow {
+    width: auto;
+    justify-content: center;
   }
 
   .bottom {
     flex-direction: column;
     align-items: center;
-    text-align: center;
     gap: 14px;
+    text-align: center;
   }
 
-  .bottomRight {
-    flex-direction: column;
-    align-items: center;
+  .bottomMeta {
+    justify-content: center;
+    gap: 6px 14px;
+  }
+
+  .bottomMeta span,
+  .bottomMeta a {
+    font-size: 12px;
+  }
+
+  .devLogo {
+    width: 20px;
+    height: 20px;
+  }
+
+  .devLabel {
+    font-size: 7px;
+  }
+
+  .devName {
+    font-size: 11px;
   }
 }
 
-@media (max-width: 480px) {
-  .footer {
-    min-height: 480px;
+@media (max-width: 400px) {
+  .content {
+    padding: 40px 16px 18px;
+    gap: 24px;
   }
 
-  .colTitle {
-    font-size: 16px;
+  .infoGrid {
+    gap: 16px 12px;
   }
 
-  .colLink {
-    font-size: 15px;
+  .infoValue {
+    font-size: 13px;
   }
 
-  .bottom span,
-  .bottom a {
-    font-size: 12px;
+  .logoImg {
+    width: min(148px, 46vw);
   }
 }
