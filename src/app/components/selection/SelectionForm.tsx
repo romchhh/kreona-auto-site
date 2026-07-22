@@ -5,6 +5,11 @@ import { useDictionary, useLocale } from '../../../i18n/LocaleProvider'
 import { localePath } from '../../../i18n/paths'
 import { getStoredUtm } from '../../lib/utm'
 import { IMPORT_COUNTRIES } from '../../data/selectionPage'
+import PhoneInput, {
+  DEFAULT_PHONE_COUNTRY,
+  isCompletePhone,
+  toInternationalPhone,
+} from '../PhoneInput'
 import styles from '../ContactSection.module.css'
 
 export type SelectionPrefill = {
@@ -17,6 +22,7 @@ export type SelectionPrefill = {
 type FormState = {
   name: string
   phone: string
+  phoneCountry: string
   brand: string
   model: string
   budget: string
@@ -41,6 +47,7 @@ export default function SelectionForm({ prefill, onClose, idPrefix = 'selection'
   const [form, setForm] = useState<FormState>({
     name: '',
     phone: '',
+    phoneCountry: DEFAULT_PHONE_COUNTRY.iso,
     brand: prefill.brand || prefill.typeLabel || '',
     model: '',
     budget: '',
@@ -49,6 +56,7 @@ export default function SelectionForm({ prefill, onClose, idPrefix = 'selection'
     consent: false,
   })
   const [status, setStatus] = useState<Status>('idle')
+  const [phoneError, setPhoneError] = useState('')
 
   const id = (name: string) => `${idPrefix}-${name}`
 
@@ -63,9 +71,15 @@ export default function SelectionForm({ prefill, onClose, idPrefix = 'selection'
     e.preventDefault()
     if (!form.consent) return
     const name = form.name.trim()
-    const phone = form.phone.trim()
-    if (!name || !phone) return
+    if (!name) return
 
+    if (!isCompletePhone(form.phone, form.phoneCountry)) {
+      setPhoneError(dict.form.phoneInvalid)
+      return
+    }
+    setPhoneError('')
+
+    const phone = toInternationalPhone(form.phone, form.phoneCountry)
     setStatus('loading')
     try {
       const carSearch = [
@@ -100,7 +114,19 @@ export default function SelectionForm({ prefill, onClose, idPrefix = 'selection'
       navigator.sendBeacon?.(
         '/api/analytics/collect',
         new Blob(
-          [JSON.stringify({ type: 'conversion', path: window.location.pathname, locale, sessionId: 'form', country: 'Unknown', city: '', referrer: '', screenW: window.innerWidth, screenH: window.innerHeight })],
+          [
+            JSON.stringify({
+              type: 'conversion',
+              path: window.location.pathname,
+              locale,
+              sessionId: 'form',
+              country: 'Unknown',
+              city: '',
+              referrer: '',
+              screenW: window.innerWidth,
+              screenH: window.innerHeight,
+            }),
+          ],
           { type: 'application/json' },
         ),
       )
@@ -140,13 +166,7 @@ export default function SelectionForm({ prefill, onClose, idPrefix = 'selection'
     )
   }
 
-  const categoryNote = [
-    prefill.categoryLabel,
-    prefill.brand,
-    prefill.typeLabel,
-  ]
-    .filter(Boolean)
-    .join(' · ')
+  const categoryNote = [prefill.categoryLabel, prefill.brand, prefill.typeLabel].filter(Boolean).join(' · ')
 
   return (
     <form className={`${styles.form} ${styles.modalForm}`} onSubmit={handleSubmit} noValidate>
@@ -157,19 +177,23 @@ export default function SelectionForm({ prefill, onClose, idPrefix = 'selection'
           <label htmlFor={id('name')}>{f.name}</label>
           <input id={id('name')} type="text" value={form.name} onChange={set('name')} placeholder={f.namePh} required />
         </div>
-        <div className={styles.field}>
-          <label htmlFor={id('phone')}>{f.phone}</label>
-          <input
-            id={id('phone')}
-            type="text"
-            inputMode="tel"
-            autoComplete="tel"
-            value={form.phone}
-            onChange={set('phone')}
-            placeholder={f.phonePh}
-            required
-          />
-        </div>
+        <PhoneInput
+          id={id('phone')}
+          label={f.phone}
+          value={form.phone}
+          countryIso={form.phoneCountry}
+          placeholder={f.phonePh}
+          error={phoneError}
+          required
+          onValueChange={(phone) => {
+            setPhoneError('')
+            setForm((prev) => ({ ...prev, phone }))
+          }}
+          onCountryChange={(phoneCountry) => {
+            setPhoneError('')
+            setForm((prev) => ({ ...prev, phoneCountry }))
+          }}
+        />
       </div>
 
       <div className={styles.row}>
@@ -216,7 +240,11 @@ export default function SelectionForm({ prefill, onClose, idPrefix = 'selection'
         </span>
       </label>
 
-      <button type="submit" className={styles.submit} disabled={status === 'loading' || !form.consent}>
+      <button
+        type="submit"
+        className={styles.submit}
+        disabled={status === 'loading' || !form.consent || !isCompletePhone(form.phone, form.phoneCountry)}
+      >
         {status === 'loading' ? f.submitting : dict.selectionPage.ctaSubmit}
         {status !== 'loading' && (
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

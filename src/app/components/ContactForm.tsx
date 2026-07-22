@@ -5,11 +5,17 @@ import { localePath } from '../../i18n/paths'
 import { getStoredUtm } from '../lib/utm'
 import type { CarInquiry } from '../lib/carInquiry'
 import type { Dictionary } from '../../i18n/dictionaries/uk'
+import PhoneInput, {
+  DEFAULT_PHONE_COUNTRY,
+  isCompletePhone,
+  toInternationalPhone,
+} from './PhoneInput'
 import styles from './ContactSection.module.css'
 
 type FormState = {
   name: string
-  contact: string
+  phone: string
+  phoneCountry: string
   carSearch: string
   comment: string
   consent: boolean
@@ -26,7 +32,8 @@ type ContactFormProps = {
 function buildInitialForm(inquiryCar: CarInquiry | null | undefined, form: Dictionary['form']): FormState {
   return {
     name: '',
-    contact: '',
+    phone: '',
+    phoneCountry: DEFAULT_PHONE_COUNTRY.iso,
     carSearch: inquiryCar ? `${inquiryCar.label}, ${inquiryCar.price}` : '',
     comment: inquiryCar ? `${form.inquiryComment}: ${inquiryCar.label}` : '',
     consent: false,
@@ -38,12 +45,13 @@ export default function ContactForm({ idPrefix = '', onSuccess, className, inqui
   const locale = useLocale()
   const [form, setForm] = useState<FormState>(() => buildInitialForm(inquiryCar, dict.form))
   const [status, setStatus] = useState<Status>('idle')
+  const [phoneError, setPhoneError] = useState('')
 
   const id = (name: string) => (idPrefix ? `${idPrefix}-${name}` : name)
 
   const set = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const val = e.target.type === 'checkbox' ? (e.target as HTMLInputElement).checked : e.target.value
-    setForm(f => ({ ...f, [k]: val }))
+    setForm((f) => ({ ...f, [k]: val }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -51,9 +59,15 @@ export default function ContactForm({ idPrefix = '', onSuccess, className, inqui
     if (!form.consent) return
 
     const name = form.name.trim()
-    const contact = form.contact.trim()
-    if (!name || !contact) return
+    if (!name) return
 
+    if (!isCompletePhone(form.phone, form.phoneCountry)) {
+      setPhoneError(dict.form.phoneInvalid)
+      return
+    }
+    setPhoneError('')
+
+    const contact = toInternationalPhone(form.phone, form.phoneCountry)
     setStatus('loading')
 
     try {
@@ -82,7 +96,19 @@ export default function ContactForm({ idPrefix = '', onSuccess, className, inqui
       navigator.sendBeacon?.(
         '/api/analytics/collect',
         new Blob(
-          [JSON.stringify({ type: 'conversion', path: window.location.pathname, locale, sessionId: 'form', country: 'Unknown', city: '', referrer: '', screenW: window.innerWidth, screenH: window.innerHeight })],
+          [
+            JSON.stringify({
+              type: 'conversion',
+              path: window.location.pathname,
+              locale,
+              sessionId: 'form',
+              country: 'Unknown',
+              city: '',
+              referrer: '',
+              screenW: window.innerWidth,
+              screenH: window.innerHeight,
+            }),
+          ],
           { type: 'application/json' },
         ),
       )
@@ -110,8 +136,8 @@ export default function ContactForm({ idPrefix = '', onSuccess, className, inqui
     return (
       <div className={styles.success}>
         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="var(--primary-red)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <circle cx="24" cy="24" r="20"/>
-          <path d="M14 24 L21 31 L34 18"/>
+          <circle cx="24" cy="24" r="20" />
+          <path d="M14 24 L21 31 L34 18" />
         </svg>
         <h3>{dict.form.successTitle}</h3>
         <p>{dict.form.successText}</p>
@@ -131,19 +157,23 @@ export default function ContactForm({ idPrefix = '', onSuccess, className, inqui
         <label htmlFor={id('name')}>{dict.form.name}</label>
         <input id={id('name')} type="text" placeholder={dict.form.namePh} value={form.name} onChange={set('name')} required />
       </div>
-      <div className={styles.field}>
-        <label htmlFor={id('contact')}>{dict.form.contact}</label>
-        <input
-          id={id('contact')}
-          type="text"
-          inputMode="text"
-          autoComplete="tel email"
-          placeholder={dict.form.contactPh}
-          value={form.contact}
-          onChange={set('contact')}
-          required
-        />
-      </div>
+      <PhoneInput
+        id={id('phone')}
+        label={dict.form.contact}
+        value={form.phone}
+        countryIso={form.phoneCountry}
+        placeholder={dict.form.phonePh}
+        error={phoneError}
+        required
+        onValueChange={(phone) => {
+          setPhoneError('')
+          setForm((f) => ({ ...f, phone }))
+        }}
+        onCountryChange={(phoneCountry) => {
+          setPhoneError('')
+          setForm((f) => ({ ...f, phoneCountry }))
+        }}
+      />
       <div className={styles.field}>
         <label htmlFor={id('carSearch')}>{dict.form.carSearch}</label>
         <input
@@ -167,11 +197,15 @@ export default function ContactForm({ idPrefix = '', onSuccess, className, inqui
           </a>
         </span>
       </label>
-      <button type="submit" className={styles.submit} disabled={!form.consent || status === 'loading'}>
+      <button
+        type="submit"
+        className={styles.submit}
+        disabled={!form.consent || status === 'loading' || !isCompletePhone(form.phone, form.phoneCountry)}
+      >
         {status === 'loading' ? dict.form.submitting : dict.form.submit}
         {status !== 'loading' && (
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M2 14 L14 2 M6 2 H14 V10"/>
+            <path d="M2 14 L14 2 M6 2 H14 V10" />
           </svg>
         )}
       </button>

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { addLead, getLeadNotifyEmails } from '../../lib/admin/store'
+import { isValidInternationalPhone } from '../../lib/phone'
 
 const UTM_KEYS = [
   'utm_source',
@@ -74,6 +75,13 @@ export async function POST(request: Request) {
     if (!name || !contact) {
       return NextResponse.json(
         { error: 'Імʼя та контакт обовʼязкові.' },
+        { status: 400 },
+      )
+    }
+
+    if (!isValidInternationalPhone(contact)) {
+      return NextResponse.json(
+        { error: 'Вкажіть коректний номер телефону з кодом країни.' },
         { status: 400 },
       )
     }
